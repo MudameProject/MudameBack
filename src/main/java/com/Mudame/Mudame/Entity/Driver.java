@@ -1,6 +1,8 @@
-package com.Mudame.Mudame.Entity;
+package com.Mudame.Mudame.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,8 +19,11 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int rating;
+    @Enumerated (EnumType.STRING)
     private String licenseType; //Enum
+    @Enumerated (EnumType.STRING)
     private int license; //Enum
+    @Enumerated (EnumType.STRING)
     private  int auxiliar; //Enum
     private int userID;
 
