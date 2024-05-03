@@ -69,6 +69,12 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-function-adapter-azure</artifactId>
+			</dependency>
+		</dependencies>
 	</dependencies>
 
 	<build>

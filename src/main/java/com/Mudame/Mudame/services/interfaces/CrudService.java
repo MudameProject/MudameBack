@@ -1,4 +1,4 @@
-package com.Mudame.Mudame.interfaces;
+package com.Mudame.Mudame.services.interfaces;
 
 import org.springframework.data.domain.Page;
 
