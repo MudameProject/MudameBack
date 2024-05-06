@@ -24,7 +24,7 @@ public class Driver {
     @Enumerated (EnumType.STRING)
     private int license; //Enum
     @Enumerated (EnumType.STRING)
-    private  int auxiliar; //Enum
+    private  int auxiliar; //Enumasjdajsd
     private int userID;
 
 }
