@@ -15,7 +15,6 @@ public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int rating;
     @Enumerated (EnumType.STRING)
     private LicenseType licenseType; //Enum
     @Enumerated (EnumType.STRING)
