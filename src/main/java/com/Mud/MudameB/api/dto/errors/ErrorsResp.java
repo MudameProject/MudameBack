@@ -1,17 +1,18 @@
 package com.Mud.MudameB.api.dto.errors;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.io.Serializable;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseErrorResponse implements Serializable {
-    private Integer code;
-    private String status;
+public class ErrorsResp extends BaseErrorResponse{
+    private List<String> errors;
 }
