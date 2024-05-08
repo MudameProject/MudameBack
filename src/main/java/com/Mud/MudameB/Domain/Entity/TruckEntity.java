@@ -9,20 +9,20 @@ import java.util.List;
 @Entity(name = "truck")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Truck {
+public class TruckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String plate;
     private String model;
     private String brand;
     private String color;
     private String capacity;
-    private int idDriver;
+    private Long idDriver;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
-    private Driver driver;
+    private DriverEntity driver;
 
 
     @ToString.Exclude
@@ -31,5 +31,5 @@ public class Truck {
             fetch = FetchType.EAGER, cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Reservation> reservation;
+    private List<ReservationEntity> reservation;
 }

@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TruckResp {
-    private int id;
+    private Long id;
     private String plate;
     private String model;
     private String brand;
     private String color;
     private String capacity;
-    private int idDriver;
+    private Long idDriver;
 }

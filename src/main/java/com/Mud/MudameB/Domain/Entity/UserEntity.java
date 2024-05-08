@@ -12,10 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity(name = "user")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String lastName;
     private String password;
@@ -31,11 +31,11 @@ public class User {
             fetch = FetchType.EAGER, cascade = CascadeType.ALL,
             orphanRemoval = false
     )
-    private List<Reservation> reservation;
+    private List<ReservationEntity> reservation;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Driver driver;
+    private DriverEntity driver;
 
 }

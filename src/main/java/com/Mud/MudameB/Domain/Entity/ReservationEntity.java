@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
+public class ReservationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
@@ -24,18 +24,15 @@ public class Reservation {
     //Relacion con truck
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
-    private Truck truck;
+    private TruckEntity truck;
 
     //Relacion con user
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private UserEntity user;
 
     //Relacion con driver
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
-    private Driver driver;
-
-
-
+    private DriverEntity driver;
 }

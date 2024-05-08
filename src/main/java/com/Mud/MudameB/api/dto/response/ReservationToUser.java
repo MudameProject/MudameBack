@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationToUser {
-    private int id;
+    private Long id;
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;

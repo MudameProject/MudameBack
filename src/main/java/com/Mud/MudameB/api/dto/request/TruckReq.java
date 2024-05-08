@@ -22,5 +22,5 @@ public class TruckReq {
     @NotNull(message = "la capacidad del camion es requerida")
     private String capacity;
     @NotNull(message = "el id del conductor del camion es requerido")
-    private int idDriver;
+    private Long idDriver;
 }
