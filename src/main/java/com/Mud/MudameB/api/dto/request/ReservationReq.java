@@ -1,15 +1,18 @@
 package com.Mud.MudameB.api.dto.request;
 
-import com.Mud.MudameB.api.dto.response.BasicUser;
-import com.Mud.MudameB.api.dto.response.DriverResp;
-import com.Mud.MudameB.api.dto.response.TruckResp;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationReq {
     @NotBlank(message = "la hora y la fecha es requerida")
     private LocalDateTime dateTime;
@@ -23,5 +26,4 @@ public class ReservationReq {
     private int truckId;
     @NotNull(message = "el id del conductor es obligatorio")
     private int driverId;
-
 }
