@@ -6,16 +6,13 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "Spring Boot-MudameBApplication<MudameB>",
             "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "MudameBApplication",
-            "request": "launch",
+            "cwd": "${workspaceFolder}",
             "mainClass": "com.Mud.MudameB.MudameBApplication",
-            "projectName": "MudameB"
+            "projectName": "MudameB",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

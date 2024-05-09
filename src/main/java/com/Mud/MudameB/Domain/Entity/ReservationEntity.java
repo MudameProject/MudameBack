@@ -18,7 +18,6 @@ public class ReservationEntity {
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
-
     /*Relaciones*/
 
     //Relacion con truck

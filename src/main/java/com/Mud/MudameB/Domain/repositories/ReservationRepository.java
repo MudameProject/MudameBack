@@ -8,4 +8,6 @@ import com.Mud.MudameB.Domain.Entity.ReservationEntity;
 @Repository
 public interface ReservationRepository extends JpaRepository<ReservationEntity, Long>{
     
+    // @Query("select r from reservation r join fetch r.user u where u.id = :idUser")
+    // public Optional<ReservationEntity> findByUserId (Long idUser);
 }
