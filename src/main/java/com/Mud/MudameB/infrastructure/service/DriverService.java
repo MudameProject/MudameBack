@@ -2,8 +2,11 @@ package com.Mud.MudameB.infrastructure.service;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
@@ -13,6 +16,7 @@ import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
+import com.Mud.MudameB.api.dto.response.UserResp;
 import com.Mud.MudameB.infrastructure.abstract_services.IDriverService;
 
 import jakarta.transaction.Transactional;
@@ -34,8 +38,7 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp get(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'get'");
+    return this.entityToResponse(this.find(id));
   }
 
   @Override
@@ -52,8 +55,20 @@ public class DriverService implements IDriverService {
 
   @Override
   public Page<DriverResp> getAll(int page, int size, SortType sortType) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+      if (page < 0) page = 0;
+      
+      PageRequest pagination = null;
+
+      switch (sortType) {
+        case NONE -> pagination = PageRequest.of(page, size);
+        case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
+        case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
+      }
+
+      this.driverRepository.findAll(pagination);
+
+      return this.driverRepository.findAll(pagination)
+          .map(this::entityToResponse);
   }
 
   @Override
@@ -66,4 +81,19 @@ public class DriverService implements IDriverService {
     return this.driverRepository.findById(id)
         .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
   }
+
+  private DriverResp entityToResponse(DriverEntity entity) {
+
+    UserResp user = new UserResp();
+    BeanUtils.copyProperties(entity.getUser(), user);
+
+    return DriverResp.builder()
+        .id(entity.getId())
+        .license(entity.getLicense())
+        .licenseType(entity.getLicenseType())
+        .auxiliar(entity.getAuxiliar())
+        .userID(user)
+        .build();
+  }
+
 }
