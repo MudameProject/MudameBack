@@ -15,19 +15,19 @@ import com.Mud.MudameB.api.dto.errors.ErrorsResp;
 @RestControllerAdvice
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class BadRequestController {
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public BaseErrorResponse handleBadRequest(
-            MethodArgumentNotValidException exception) {
+        @ExceptionHandler(MethodArgumentNotValidException.class)
+        public BaseErrorResponse handleBadRequest(
+                        MethodArgumentNotValidException exception) {
 
-        List<String> errors = new ArrayList<>();
+                List<String> errors = new ArrayList<>();
 
-        exception.getAllErrors()
-                .forEach(error -> errors.add(error.getDefaultMessage()));
+                exception.getAllErrors()
+                                .forEach(error -> errors.add(error.getDefaultMessage()));
 
-        return ErrorsResp.builder()
-                .code(HttpStatus.BAD_REQUEST.value())
-                .status(HttpStatus.BAD_REQUEST.name())
-                .errors(errors)
-                .build();
-    }
+                return ErrorsResp.builder()
+                                .code(HttpStatus.BAD_REQUEST.value())
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .errors(errors)
+                                .build();
+        }
 }
