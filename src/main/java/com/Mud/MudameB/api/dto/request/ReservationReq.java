@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -27,5 +26,5 @@ public class ReservationReq {
     @NotNull(message = "el id del camion es obligatorio")
     private Long truckId;
     @NotNull(message = "el id del conductor es obligatorio")
-    private Long driverId;
+    private Long driverdI;
 }
