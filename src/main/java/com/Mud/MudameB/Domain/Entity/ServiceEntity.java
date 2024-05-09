@@ -2,8 +2,13 @@ package com.Mud.MudameB.Domain.Entity;
 
 import java.math.BigDecimal;
 
+import com.Mud.MudameB.Utils.enums.PayMethod;
+
+import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +32,9 @@ public class ServiceEntity {
     private Long id;
     @Column (nullable = false)
     private BigDecimal price;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private PayMethod payMethod;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
     private TruckEntity truck;

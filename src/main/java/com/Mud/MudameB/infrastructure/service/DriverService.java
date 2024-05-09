@@ -1,4 +1,4 @@
-package com.Mud.MudameB.infraestructure.service;
+package com.Mud.MudameB.infrastructure.service;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import com.Mud.MudameB.Utils.enums.SortType;
 import com.Mud.MudameB.api.dto.request.DriverReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
-import com.Mud.MudameB.infraestructure.abstract_services.IDriverService;
+import com.Mud.MudameB.infrastructure.abstract_services.IDriverService;
 
-public class DriverService implements IDriverService{
+public class DriverService implements IDriverService {
 
   @Override
   public DriverResp create(DriverReq request) {
@@ -46,5 +46,5 @@ public class DriverService implements IDriverService{
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'search'");
   }
-  
+
 }
