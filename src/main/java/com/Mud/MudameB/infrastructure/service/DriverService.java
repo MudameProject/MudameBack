@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
-import com.Mud.MudameB.Utils.enums.SortType;
+
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
@@ -54,16 +54,12 @@ public class DriverService implements IDriverService {
   }
 
   @Override
-  public Page<DriverResp> getAll(int page, int size, SortType sortType) {
+  public Page<DriverResp> getAll(int page, int size) {
       if (page < 0) page = 0;
       
       PageRequest pagination = null;
 
-      switch (sortType) {
-        case NONE -> pagination = PageRequest.of(page, size);
-        case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
-        case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
-      }
+      
 
       this.driverRepository.findAll(pagination);
 
