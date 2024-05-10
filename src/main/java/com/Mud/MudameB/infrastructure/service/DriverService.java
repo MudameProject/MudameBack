@@ -55,20 +55,21 @@ public class DriverService implements IDriverService {
 
   @Override
   public Page<DriverResp> getAll(int page, int size, SortType sortType) {
-      if (page < 0) page = 0;
-      
-      PageRequest pagination = null;
+    if (page < 0)
+      page = 0;
 
-      switch (sortType) {
-        case NONE -> pagination = PageRequest.of(page, size);
-        case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
-        case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
-      }
+    PageRequest pagination = null;
 
-      this.driverRepository.findAll(pagination);
+    switch (sortType) {
+      case NONE -> pagination = PageRequest.of(page, size);
+      case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
+      case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
+    }
 
-      return this.driverRepository.findAll(pagination)
-          .map(this::entityToResponse);
+    this.driverRepository.findAll(pagination);
+
+    return this.driverRepository.findAll(pagination)
+        .map(this::entityToResponse);
   }
 
   @Override
