@@ -24,3 +24,4 @@ Desarrolladores: Responsables del desarrollo, mantenimiento y actualizaciones de
 
 1.6 Tematica electa -Sirve para las personas que deseen cambiarse de hogar o transportar una cantidad de objetos, de manera rapida y eficiente
 
+
