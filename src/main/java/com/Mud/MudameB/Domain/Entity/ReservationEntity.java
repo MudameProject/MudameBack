@@ -5,7 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.Mud.MudameB.Utils.enums.PayMethod;
+
+import io.micrometer.common.lang.NonNull;
 
 @Entity(name = "reservation")
 @Data
@@ -18,6 +23,11 @@ public class ReservationEntity {
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
+    @Column (nullable = false)
+    private BigDecimal price;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    private PayMethod payMethod;
     /*Relaciones*/
 
     //Relacion con truck
