@@ -17,7 +17,7 @@ public class DriverReq {
     @NotBlank(message = "el tipo de licencia es requerido")
     private LicenseType licenseType;
     @NotBlank(message = "el numero de licencia es requerido")
-    private LicenseType license;
+    private String license;
     private Auxiliar auxiliar;
     @NotBlank(message = "el numero de identidad del empleado es requerido")
     private Long userID;

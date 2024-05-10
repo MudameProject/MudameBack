@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class DriverResp {
     private Long id;
     private LicenseType licenseType;
-    private LicenseType license;
+    private String license;
     private Auxiliar auxiliar;
-    private Long userID;
+    private UserResp userID;
 }
