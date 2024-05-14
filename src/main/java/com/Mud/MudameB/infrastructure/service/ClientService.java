@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
@@ -25,16 +26,16 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserService implements IClientService {
+public class ClientService implements IClientService {
 
     @Autowired
-    private final ClientRepository UserRepository;
+    private final ClientRepository ClientRepository;
 
     @Override
     public ClientResp create(ClientReq request) {
-        ClientEntity user = this.requestToEntity(request);
-        user.setReservation(new ArrayList<>());
-        return this.entityToResp(this.UserRepository.save(user));
+        ClientEntity client = this.requestToEntity(request);
+        client.setReservation(new ArrayList<>());
+        return this.entityToResp(this.ClientRepository.save(client));
     }
 
     @Override
@@ -44,19 +45,19 @@ public class UserService implements IClientService {
 
     @Override
     public ClientResp update(ClientReq request, Long id) {
-        ClientEntity user = this.find(id);
+        ClientEntity client = this.find(id);
 
-        ClientEntity userUpdate = this.requestToEntity(request);
-        userUpdate.setId(id);
-        userUpdate.setReservation(user.getReservation());
+        ClientEntity clientUpdate = this.requestToEntity(request);
+        clientUpdate.setId(id);
+        clientUpdate.setReservation(client.getReservation());
 
-        return this.entityToResp(this.UserRepository.save(userUpdate));
+        return this.entityToResp(this.ClientRepository.save(clientUpdate));
     }
 
     @Override
     public void delete(Long id) {
-        ClientEntity user = this.find(id);
-        this.UserRepository.delete(user);
+        ClientEntity client = this.find(id);
+        this.ClientRepository.delete(client);
     }
 
     private ClientResp entityToResp(ClientEntity entity) {
@@ -108,14 +109,20 @@ public class UserService implements IClientService {
     }
 
     private ClientEntity find(Long id) {
-        return this.UserRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("User")));
+        return this.ClientRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Client")));
     }
 
     @Override
     public Page<ClientResp> getAll(int page, int size) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+        if (page < 0)
+            page = 0;
+
+        PageRequest pagination = PageRequest.of(page, size);
+
+        return this.ClientRepository.findAll(pagination)
+                .map(vacant -> this.entityToResp(vacant));
+
     }
 
 }
