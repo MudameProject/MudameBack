@@ -7,14 +7,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
 import com.Mud.MudameB.Domain.Entity.ClientEntity;
 import com.Mud.MudameB.Domain.repositories.ClientRepository;
-import com.Mud.MudameB.Utils.enums.SortType;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
@@ -60,25 +57,6 @@ public class UserService implements IClientService {
     public void delete(Long id) {
         ClientEntity user = this.find(id);
         this.UserRepository.delete(user);
-    }
-
-    @SuppressWarnings("null")
-    @Override
-    public Page<ClientResp> getAll(int page, int size, SortType sortType) {
-
-        if (page > 0)
-            page = 0;
-
-        PageRequest pagination = null;
-
-        switch (sortType) {
-            case NONE -> pagination = PageRequest.of(page, size);
-            case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
-            case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
-        }
-
-        return this.UserRepository.findAll(pagination)
-                .map(this::entityToResp);
     }
 
     private ClientResp entityToResp(ClientEntity entity) {
@@ -132,6 +110,12 @@ public class UserService implements IClientService {
     private ClientEntity find(Long id) {
         return this.UserRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("User")));
+    }
+
+    @Override
+    public Page<ClientResp> getAll(int page, int size) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
 
 }
