@@ -30,11 +30,7 @@ public class ServiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column (nullable = false)
-    private BigDecimal price;
-    @NonNull
-    @Enumerated(EnumType.STRING)
-    private PayMethod payMethod;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
     private TruckEntity truck;

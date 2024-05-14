@@ -9,5 +9,4 @@ public interface IDriverService extends CrudService<DriverReq, DriverResp, Long>
 
   public List<DriverResp> search(String name);
 
-  public final String FIELD_BY_SORT = "price";
 }
