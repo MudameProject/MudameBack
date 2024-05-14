@@ -21,7 +21,7 @@ public class ReservationReq {
     @NotBlank(message = "el destino del traslado es obligatorio")
     private String destiny;
     @NotNull(message = "el id del usuario es obligatorio")
-    private Long userId;
+    private Long clientId;
     @NotNull(message = "el id del camion es obligatorio")
     private Long truckId;
     @NotNull(message = "el id del conductor es obligatorio")

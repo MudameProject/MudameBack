@@ -1,7 +1,5 @@
 package com.Mud.MudameB.api.dto.response;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResp {
+public class BasicClient {
     private Long id;
     private String name;
     private String lastName;
+    private String password;
     private String email;
     private Integer phoneNumber;
     private String address;
     private Integer zipCode;
-    private List<ReservationToUser> reservations;
 }

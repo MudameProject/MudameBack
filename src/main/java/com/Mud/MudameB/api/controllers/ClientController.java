@@ -17,51 +17,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Mud.MudameB.Utils.enums.SortType;
-import com.Mud.MudameB.api.dto.request.UserReq;
-import com.Mud.MudameB.api.dto.response.UserResp;
-import com.Mud.MudameB.infrastructure.abstract_services.IUserService;
+import com.Mud.MudameB.api.dto.request.ClientReq;
+import com.Mud.MudameB.api.dto.response.ClientResp;
+import com.Mud.MudameB.infrastructure.abstract_services.IClientService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(path = "/clients")
 @AllArgsConstructor
-public class UserController {
-    private final IUserService userService;
+public class ClientController {
+    private final IClientService clientService;
 
     @GetMapping
-    public ResponseEntity<Page<UserResp>> getAll(
+    public ResponseEntity<Page<ClientResp>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestHeader(required = false) SortType sortType) {
         if (Objects.isNull(sortType))
             sortType = SortType.NONE;
 
-        return ResponseEntity.ok(this.userService.getAll(page - 1, size, sortType));
+        return ResponseEntity.ok(this.clientService.getAll(page - 1, size, sortType));
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<UserResp> get(
+    public ResponseEntity<ClientResp> get(
             @PathVariable Long id) {
-        return ResponseEntity.ok(this.userService.get(id));
+        return ResponseEntity.ok(this.clientService.get(id));
     }
 
     @PostMapping
-    public ResponseEntity<UserResp> insert(
-            @Validated @RequestBody UserReq request) {
-        return ResponseEntity.ok(this.userService.create(request));
+    public ResponseEntity<ClientResp> insert(
+            @Validated @RequestBody ClientReq request) {
+        return ResponseEntity.ok(this.clientService.create(request));
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<UserResp> update(
-            @Validated @RequestBody UserReq request,
+    public ResponseEntity<ClientResp> update(
+            @Validated @RequestBody ClientReq request,
             @PathVariable Long id) {
-        return ResponseEntity.ok(this.userService.update(request, id));
+        return ResponseEntity.ok(this.clientService.update(request, id));
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        this.userService.delete(id);
+        this.clientService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

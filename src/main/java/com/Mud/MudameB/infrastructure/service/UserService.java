@@ -12,44 +12,44 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
-import com.Mud.MudameB.Domain.Entity.UserEntity;
-import com.Mud.MudameB.Domain.repositories.UserRepository;
+import com.Mud.MudameB.Domain.Entity.ClientEntity;
+import com.Mud.MudameB.Domain.repositories.ClientRepository;
 import com.Mud.MudameB.Utils.enums.SortType;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
-import com.Mud.MudameB.api.dto.request.UserReq;
+import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
-import com.Mud.MudameB.api.dto.response.ReservationToUser;
+import com.Mud.MudameB.api.dto.response.ReservationToClient;
 import com.Mud.MudameB.api.dto.response.TruckResp;
-import com.Mud.MudameB.api.dto.response.UserResp;
-import com.Mud.MudameB.infrastructure.abstract_services.IUserService;
+import com.Mud.MudameB.api.dto.response.ClientResp;
+import com.Mud.MudameB.infrastructure.abstract_services.IClientService;
 import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserService implements IUserService {
+public class UserService implements IClientService {
 
     @Autowired
-    private final UserRepository UserRepository;
+    private final ClientRepository UserRepository;
 
     @Override
-    public UserResp create(UserReq request) {
-        UserEntity user = this.requestToEntity(request);
+    public ClientResp create(ClientReq request) {
+        ClientEntity user = this.requestToEntity(request);
         user.setReservation(new ArrayList<>());
         return this.entityToResp(this.UserRepository.save(user));
     }
 
     @Override
-    public UserResp get(Long id) {
+    public ClientResp get(Long id) {
         return this.entityToResp(this.find(id));
     }
 
     @Override
-    public UserResp update(UserReq request, Long id) {
-        UserEntity user = this.find(id);
+    public ClientResp update(ClientReq request, Long id) {
+        ClientEntity user = this.find(id);
 
-        UserEntity userUpdate = this.requestToEntity(request);
+        ClientEntity userUpdate = this.requestToEntity(request);
         userUpdate.setId(id);
         userUpdate.setReservation(user.getReservation());
 
@@ -58,13 +58,13 @@ public class UserService implements IUserService {
 
     @Override
     public void delete(Long id) {
-        UserEntity user = this.find(id);
+        ClientEntity user = this.find(id);
         this.UserRepository.delete(user);
     }
 
     @SuppressWarnings("null")
     @Override
-    public Page<UserResp> getAll(int page, int size, SortType sortType) {
+    public Page<ClientResp> getAll(int page, int size, SortType sortType) {
 
         if (page > 0)
             page = 0;
@@ -81,14 +81,14 @@ public class UserService implements IUserService {
                 .map(this::entityToResp);
     }
 
-    private UserResp entityToResp(UserEntity entity) {
+    private ClientResp entityToResp(ClientEntity entity) {
 
-        List<ReservationToUser> reservation = entity.getReservation()
+        List<ReservationToClient> reservation = entity.getReservation()
                 .stream()
                 .map(this::entityToResponseReservation)
                 .collect(Collectors.toList());
 
-        return UserResp.builder()
+        return ClientResp.builder()
                 .id(entity.getId())
                 .name(entity.getName())
                 .lastName(entity.getLastName())
@@ -100,7 +100,7 @@ public class UserService implements IUserService {
                 .build();
     }
 
-    private ReservationToUser entityToResponseReservation(ReservationEntity entity) {
+    private ReservationToClient entityToResponseReservation(ReservationEntity entity) {
 
         TruckResp truck = new TruckResp();
         BeanUtils.copyProperties(entity.getTruck(), truck);
@@ -108,7 +108,7 @@ public class UserService implements IUserService {
         DriverResp driver = new DriverResp();
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
-        return ReservationToUser.builder()
+        return ReservationToClient.builder()
                 .id(entity.getId())
                 .dateTime(entity.getDateTime())
                 .origin(entity.getOrigin())
@@ -118,8 +118,8 @@ public class UserService implements IUserService {
                 .build();
     }
 
-    private UserEntity requestToEntity(UserReq request) {
-        return UserEntity.builder()
+    private ClientEntity requestToEntity(ClientReq request) {
+        return ClientEntity.builder()
                 .name(request.getName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
@@ -129,7 +129,7 @@ public class UserService implements IUserService {
                 .build();
     }
 
-    private UserEntity find(Long id) {
+    private ClientEntity find(Long id) {
         return this.UserRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("User")));
     }

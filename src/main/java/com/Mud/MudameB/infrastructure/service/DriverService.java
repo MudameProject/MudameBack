@@ -16,7 +16,7 @@ import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
-import com.Mud.MudameB.api.dto.response.UserResp;
+import com.Mud.MudameB.api.dto.response.ClientResp;
 import com.Mud.MudameB.infrastructure.abstract_services.IDriverService;
 
 import jakarta.transaction.Transactional;
@@ -85,15 +85,15 @@ public class DriverService implements IDriverService {
 
   private DriverResp entityToResponse(DriverEntity entity) {
 
-    UserResp user = new UserResp();
-    BeanUtils.copyProperties(entity.getUser(), user);
+    ClientResp client = new ClientResp();
+    BeanUtils.copyProperties(entity.getClient(), client);
 
     return DriverResp.builder()
         .id(entity.getId())
         .license(entity.getLicense())
         .licenseType(entity.getLicenseType())
         .auxiliar(entity.getAuxiliar())
-        .userID(user)
+        .clientID(client)
         .build();
   }
 

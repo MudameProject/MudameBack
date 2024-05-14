@@ -23,7 +23,7 @@ public class DriverEntity {
     private String license;
     @Enumerated(EnumType.STRING)
     private Auxiliar auxiliar; // Enum
-    private Long userID;
+    private Long clientID;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
     @ToString.Exclude
@@ -31,9 +31,9 @@ public class DriverEntity {
     private List<TruckEntity> trucks;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "client_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private UserEntity user;
+    private ClientEntity client;
 
 }

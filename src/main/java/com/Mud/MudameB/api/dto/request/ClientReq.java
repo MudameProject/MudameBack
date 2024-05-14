@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserReq {
+public class ClientReq {
     @NotBlank(message = "el nombre es requerido")
     private String name;
     @NotBlank(message = "el appelido es requerido")

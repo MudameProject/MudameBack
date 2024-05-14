@@ -17,5 +17,5 @@ public class DriverResp {
     private LicenseType licenseType;
     private String license;
     private Auxiliar auxiliar;
-    private UserResp userID;
+    private ClientResp clientID;
 }

@@ -18,19 +18,19 @@ public class ReservationEntity {
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
-    /*Relaciones*/
+    /* Relaciones */
 
-    //Relacion con truck
+    // Relacion con truck
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
     private TruckEntity truck;
 
-    //Relacion con user
+    // Relacion con client
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private ClientEntity client;
 
-    //Relacion con driver
+    // Relacion con driver
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
     private DriverEntity driver;

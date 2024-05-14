@@ -1,18 +1,16 @@
 package com.Mud.MudameB.Domain.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "user")
-public class UserEntity {
+@Entity(name = "client")
+public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,13 +25,10 @@ public class UserEntity {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "user",
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL,
-            orphanRemoval = false
-    )
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
     private List<ReservationEntity> reservation;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private DriverEntity driver;
