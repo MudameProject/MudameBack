@@ -2,6 +2,7 @@ package com.Mud.MudameB.Domain.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import io.micrometer.common.lang.NonNull;
 
 @Entity(name = "reservation")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationEntity {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,9 @@ public class ClientService implements IClientService {
         ClientEntity client = this.requestToEntity(request);
         client.setReservation(new ArrayList<>());
         return this.entityToResp(this.ClientRepository.save(client));
+    }
+    public ClientEntity findById(Long id) {
+        return ClientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
     }
 
     @Override
