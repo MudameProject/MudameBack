@@ -3,7 +3,11 @@ package com.Mud.MudameB.infrastructure.service;
 import com.Mud.MudameB.Domain.Entity.ClientEntity;
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
+import com.Mud.MudameB.Domain.Entity.TruckEntity;
+import com.Mud.MudameB.Domain.repositories.ClientRepository;
+import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.ReservationRepository;
+import com.Mud.MudameB.Domain.repositories.TruckRepository;
 import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
@@ -13,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,13 +32,15 @@ public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
 
     @Autowired
-    private ClientService clientService;
-
-    //@Autowired
-    //private TruckService truckService;
+    private final ClientRepository clientRepository;
 
     @Autowired
-    private DriverService driverService;
+    private final DriverRepository driverRepository;
+
+    @Autowired
+    private final TruckRepository truckRepository;
+
+
 
 
     @Override
@@ -68,36 +75,39 @@ public class ReservationService implements IReservationService {
 
 
 
-    public ReservationToClient entityToResponseReservation(ReservationEntity entity) {
+    public ReservationResp entityToResponse(ReservationEntity entity) {
+        // Crear una nueva instancia de ClientResp, que será la versión simplificada del objeto Truck de la entidad
+        BasicClient client = new BasicClient();
+        BeanUtils.copyProperties(entity.getClient(),client);
         // Crear una nueva instancia de TruckResp, que será la versión simplificada del objeto Truck de la entidad
         TruckResp truck = new TruckResp();
         // Copiar las propiedades del objeto Truck de la entidad a la instancia de TruckResp
         BeanUtils.copyProperties(entity.getTruck(), truck);
-
         // Crear una nueva instancia de DriverResp, que será la versión simplificada del objeto Driver de la entidad
         DriverResp driver = new DriverResp();
         // Copiar las propiedades del objeto Driver de la entidad a la instancia de DriverResp
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
+
+
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
-        return ReservationToClient.builder()
+        return ReservationResp.builder()
                 .id(entity.getId())          // Asignar el ID de la entidad a la respuesta
                 .dateTime(entity.getDateTime())  // Asignar la fecha y hora de la entidad a la respuesta
                 .origin(entity.getOrigin())      // Asignar el origen de la entidad a la respuesta
-                .destiny(entity.getDestiny())    // Asignar el destino de la entidad a la respuesta
-                .truck(truck)                    // Asignar el objeto TruckResp a la respuesta
-                .driver(driver)                  // Asignar el objeto DriverResp a la respuesta
-                .build();                        // Construir la instancia de ReservationToClient
+                .destiny(entity.getDestiny())// Asignar el destino de la entidad a la respuesta
+                .truck(truck)
+                .driver(driver)
+                .client(client)
+                .build();
     }
 
-
+    /*
     private ReservationEntity requestToEntity(ReservationReq request) {
-
         // Buscar las entidades relacionadas utilizando sus IDs
-        ClientEntity client = clientService.findById(request.getClientId());
-        //TruckEntity truck = truckService.findById(request.getTruckId());
-        DriverEntity driver = driverService.findById(request.getDriverdI());
-
+       // ClientEntity client = clientService.findById(request.getClientId());
+        //TruckEntity truck = Trucks.findById(request.getTruckId());
+       // DriverEntity driver = driverService.findById(request.getDriverdI());
         // Crear una nueva instancia de ReservationEntity utilizando el constructor del patrón builder
         return ReservationEntity.builder()
                 .dateTime(request.getDateTime())
@@ -108,14 +118,6 @@ public class ReservationService implements IReservationService {
                 .driver(driver)
                 .build();
     }
-
-
+    //BASARSE EN APPOINTMENT
+*/
 }
-
-
-
-
-}
-
-
-
