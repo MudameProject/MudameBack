@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
+import com.Mud.MudameB.Utils.enums.Auxiliar;
+import com.Mud.MudameB.Utils.enums.LicenseType;
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
@@ -30,8 +32,7 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp create(DriverReq request) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'create'");
+    return null; //hasta aqui quede
   }
 
   @Override
@@ -89,4 +90,15 @@ public class DriverService implements IDriverService {
         .build();
   }
 
+
+  private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
+    
+    entity.setLicense(request.getLicense());
+    entity.setLicenseType(LicenseType.B2);
+    entity.setAuxiliar(Auxiliar.YES);
+    entity.setUserID(request.getUserID());
+
+    return entity;
+
+}
 }
