@@ -1,5 +1,7 @@
 package com.Mud.MudameB.api.dto.request;
 
+import com.Mud.MudameB.Utils.enums.Capacity;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +22,5 @@ public class TruckReq {
     @NotNull(message = "el color del camion es requerido")    
     private String color;
     @NotNull(message = "la capacidad del camion es requerida")
-    private String capacity;
-    @NotNull(message = "el id del conductor del camion es requerido")
-    private Long idDriver;
+    private Capacity capacity;
 }

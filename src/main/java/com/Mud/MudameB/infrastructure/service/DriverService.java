@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
-import com.Mud.MudameB.Utils.enums.Auxiliar;
-import com.Mud.MudameB.Utils.enums.LicenseType;
+
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
@@ -56,8 +55,11 @@ public class DriverService implements IDriverService {
   public Page<DriverResp> getAll(int page, int size) {
       if (page < 0) page = 0;
       
+      PageRequest pagination = null;
 
-      PageRequest pagination = PageRequest.of(page, size);
+      
+
+      this.driverRepository.findAll(pagination);
 
       return this.driverRepository.findAll(pagination)
               .map(vacant -> this.entityToResponse(vacant));
