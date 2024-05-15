@@ -2,6 +2,7 @@ package com.Mud.MudameB.infrastructure.service;
 
 import java.util.List;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,10 @@ public class DriverService implements IDriverService {
   @Override
   public DriverResp create(DriverReq request) {
     return null; //hasta aqui quede
+  }
+
+  public DriverEntity findById(Long id) {
+    return driverRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Driver not found"));
   }
 
   @Override
