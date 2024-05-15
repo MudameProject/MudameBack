@@ -1,29 +1,24 @@
 package com.Mud.MudameB.infrastructure.service;
 
-import com.Mud.MudameB.Domain.Entity.ClientEntity;
-import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
-import com.Mud.MudameB.Domain.Entity.TruckEntity;
 import com.Mud.MudameB.Domain.repositories.ClientRepository;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.ReservationRepository;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
-import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
 import com.Mud.MudameB.infrastructure.abstract_services.IReservationService;
+
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.data.domain.Page;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Transactional
 @Service
 @AllArgsConstructor
 public class ReservationService implements IReservationService {

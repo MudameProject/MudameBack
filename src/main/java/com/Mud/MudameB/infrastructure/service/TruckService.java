@@ -56,6 +56,7 @@ public class TruckService implements ITruckService {
     throw new UnsupportedOperationException("Unimplemented method 'getAll'");
   }
 
+  @SuppressWarnings("null")
   @Override
   public Page<TruckResp> getAll(int page, int size, Capacity CrudCapacity) {
 
