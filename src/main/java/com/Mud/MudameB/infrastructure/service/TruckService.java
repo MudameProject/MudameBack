@@ -6,8 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.TruckEntity;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
 import com.Mud.MudameB.Utils.enums.Capacity;
@@ -77,10 +75,18 @@ public class TruckService implements ITruckService {
     }
     
     private TruckResp entityToResponse(TruckEntity Entity){
+
         DriverResp driver = new DriverResp();
         BeanUtils.copyProperties(Entity.getDriver(), driver);
 
-        return null; //AQUI QUEDE
+        return TruckResp.builder()
+            .id(Entity.getId())
+            .plate(Entity.getPlate())
+            .model(Entity.getModel())
+            .brand(Entity.getBrand())
+            .color(Entity.getColor())
+            .capacity(Entity.getCapacity())
+            .build(); 
     }
 
 }
