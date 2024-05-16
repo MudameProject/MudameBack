@@ -3,7 +3,13 @@ package com.Mud.MudameB.infrastructure.service;
 import com.Mud.MudameB.Domain.Entity.ClientEntity;
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.ReservationEntity;
+import com.Mud.MudameB.Domain.Entity.TruckEntity;
+import com.Mud.MudameB.Domain.repositories.ClientRepository;
+import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.ReservationRepository;
+import com.Mud.MudameB.Domain.repositories.TruckRepository;
+import com.Mud.MudameB.Utils.exceptions.BadRequestException;
+import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
@@ -17,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,10 +34,16 @@ public class ReservationService implements IReservationService {
     private final ReservationRepository reservationRepository;
 
     @Autowired
+    private final ClientRepository clientRepository;
+
+    @Autowired
+    private final DriverRepository driverRepository;
+
+    private final TruckRepository truckRepository;
+
+    @Autowired
     private ClientService clientService;
 
-    //@Autowired
-    //private TruckService truckService;
 
     @Autowired
     private DriverService driverService;
@@ -43,7 +56,30 @@ public class ReservationService implements IReservationService {
 
     @Override
     public ReservationResp create(ReservationReq request) {
-        return null;
+
+        // Obtener cliente
+        ClientEntity client = this.clientRepository.findById(request.getClientId())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("client")));
+
+        // Obtener driver
+        DriverEntity driver = this.driverRepository.findById(request.getDriverdI())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("driver")));
+
+        TruckEntity truck = this.truckRepository.findById(request.getTruckId())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
+
+
+        ReservationEntity reservation = this.requestToEntity(request);
+
+        reservation.setClient(client);
+        reservation.setDriver(driver);
+        reservation.setTruck(truck);
+
+
+        return this.entityToResponseReservation(this.reservationRepository.save(reservation));
+
+
+
     }
 
     @Override
@@ -68,26 +104,22 @@ public class ReservationService implements IReservationService {
 
 
 
-    public ReservationToClient entityToResponseReservation(ReservationEntity entity) {
-        // Crear una nueva instancia de TruckResp, que será la versión simplificada del objeto Truck de la entidad
-        TruckResp truck = new TruckResp();
-        // Copiar las propiedades del objeto Truck de la entidad a la instancia de TruckResp
-        BeanUtils.copyProperties(entity.getTruck(), truck);
+    public ReservationResp entityToResponseReservation(ReservationEntity entity) {
 
-        // Crear una nueva instancia de DriverResp, que será la versión simplificada del objeto Driver de la entidad
+        BasicClient client = new BasicClient();
+        BeanUtils.copyProperties(entity.getClient(), client);
+
         DriverResp driver = new DriverResp();
-        // Copiar las propiedades del objeto Driver de la entidad a la instancia de DriverResp
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
-        return ReservationToClient.builder()
-                .id(entity.getId())          // Asignar el ID de la entidad a la respuesta
-                .dateTime(entity.getDateTime())  // Asignar la fecha y hora de la entidad a la respuesta
-                .origin(entity.getOrigin())      // Asignar el origen de la entidad a la respuesta
-                .destiny(entity.getDestiny())    // Asignar el destino de la entidad a la respuesta
-                .truck(truck)                    // Asignar el objeto TruckResp a la respuesta
-                .driver(driver)                  // Asignar el objeto DriverResp a la respuesta
-                .build();                        // Construir la instancia de ReservationToClient
+        return ReservationResp.builder()
+                .id(entity.getId())
+                .dateTime(entity.getDateTime())
+                .origin(entity.getOrigin())
+                .destiny(entity.getDestiny())
+                .driver(driver)
+                .build();
     }
 
 
@@ -115,7 +147,7 @@ public class ReservationService implements IReservationService {
 
 
 
-}
+
 
 
 
