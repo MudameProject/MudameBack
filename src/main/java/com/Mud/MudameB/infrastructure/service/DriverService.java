@@ -98,14 +98,14 @@ public class DriverService implements IDriverService {
   }
 
 
-  private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
+//   private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
     
-    entity.setLicense(request.getLicense());
-    entity.setLicenseType(LicenseType.B2);
-    entity.setAuxiliar(Auxiliar.YES);
-    entity.setUserID(request.getUserID());
+//     entity.setLicense(request.getLicense());
+//     entity.setLicenseType(LicenseType.B2);
+//     entity.setAuxiliar(Auxiliar.YES);
+//     entity.setUserID(request.getUserID());
 
-    return entity;
+//     return entity;
 
-}
+// }
 }
