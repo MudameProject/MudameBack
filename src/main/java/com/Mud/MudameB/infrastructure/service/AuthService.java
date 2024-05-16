@@ -1,6 +1,7 @@
 package com.Mud.MudameB.infrastructure.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.User;
@@ -25,6 +26,9 @@ public class AuthService implements IAuthService {
     @Autowired
     private final JwtService jwtService;
 
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public AuthResp login(LoginReq request) {
         return null;
@@ -42,7 +46,8 @@ public class AuthService implements IAuthService {
         // 2.construimos el nuevo usuario
         User user = User.builder()
                 .username(request.getUserName())
-                .password(request.getPassword())
+                // guardar la contraseña codificada
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.CLIENT)
                 .build();
 
