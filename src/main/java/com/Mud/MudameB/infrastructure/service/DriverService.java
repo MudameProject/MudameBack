@@ -1,5 +1,6 @@
 package com.Mud.MudameB.infrastructure.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -32,7 +33,8 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp create(DriverReq request) {
-    return null; //hasta aqui quede
+    DriverEntity entity = this.requestToEntity(request);
+    return this.entityToResponse(this.driverRepository.save(entity));
   }
 
   @Override
@@ -92,13 +94,22 @@ public class DriverService implements IDriverService {
 
 
   private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
-    
+
     entity.setLicense(request.getLicense());
-    entity.setLicenseType(LicenseType.B2);
-    entity.setAuxiliar(Auxiliar.YES);
+    entity.setLicenseType(request.getLicenseType());
+    entity.setAuxiliar(request.getAuxiliar());
     entity.setUserID(request.getUserID());
 
     return entity;
 
-}
+  }
+
+  private DriverEntity requestToEntity(DriverReq request) {
+    return DriverEntity.builder()
+      .license(request.getLicense())
+      .licenseType(request.getLicenseType())
+      .auxiliar(request.getAuxiliar())
+      .userID(request.getUserID())
+      .build();
+  }
 }
