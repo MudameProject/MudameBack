@@ -14,7 +14,7 @@ import com.Mud.MudameB.Utils.enums.Capacity;
 public class TruckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String plate;
     private String model;
     private String brand;
