@@ -14,7 +14,8 @@ import org.springframework.validation.annotation.Validated;
 
 import com.Mud.MudameB.Utils.enums.Capacity;
 import com.Mud.MudameB.api.dto.response.TruckResp;
-import com.Mud.MudameB.infrastructure.service.TruckService;
+import com.Mud.MudameB.infrastructure.abstract_services.ITruckService;
+
 
 import lombok.AllArgsConstructor;
 
@@ -25,16 +26,19 @@ import lombok.AllArgsConstructor;
 public class TruckController {
     
     @Autowired
-    private final TruckService truckService;
+    private final ITruckService truckService;
 
     @GetMapping
-    public ResponseEntity<Page<TruckResp>> getAll(@Validated @RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "10") int size,@RequestHeader(required = false) Capacity CAPACITY_SEARCH) {
+    public ResponseEntity<Page<TruckResp>> getAll(@Validated 
+    @RequestParam(defaultValue = "1") int page,
+    @RequestParam(defaultValue = "10") int size,
+    
+    @RequestHeader(required = false) Capacity CAPACITY_SEARCH) {
+        
         if (Objects.isNull(CAPACITY_SEARCH))
             CAPACITY_SEARCH = Capacity.NONE;
+
         return ResponseEntity.ok(this.truckService.getAll(page - 1 , size, CAPACITY_SEARCH));
     };
-
-
-    
 
 }
