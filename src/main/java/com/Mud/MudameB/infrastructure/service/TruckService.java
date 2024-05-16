@@ -85,7 +85,7 @@ public class TruckService implements ITruckService {
     BeanUtils.copyProperties(Entity.getDriver(), driver);
 
     return TruckResp.builder()
-        .id(Entity.getId())
+        .id(Long.parseLong(Entity.getId()))
         .plate(Entity.getPlate())
         .model(Entity.getModel())
         .brand(Entity.getBrand())
