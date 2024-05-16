@@ -27,7 +27,7 @@ public class AuthService implements IAuthService {
 
     @Override
     public AuthResp login(LoginReq request) {
-        throw new UnsupportedOperationException("Unimplemented method 'login'");
+        return null;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class AuthService implements IAuthService {
 
         // 2.construimos el nuevo usuario
         User user = User.builder()
-                .userName(request.getUserName())
+                .username(request.getUserName())
                 .password(request.getPassword())
                 .role(Role.CLIENT)
                 .build();

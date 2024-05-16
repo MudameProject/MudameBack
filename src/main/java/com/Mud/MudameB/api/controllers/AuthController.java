@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class AuthController {
 
-
     @PostMapping(path = "/auth/login")
-    public String login(){
+    public String login() {
         return "HACIENDO EL LOGIN";
     }
 
     @PostMapping(path = "/auth/register")
-    public String register(){
+    public String register() {
         return "HACIENDO EL LOGIN";
     }
 }

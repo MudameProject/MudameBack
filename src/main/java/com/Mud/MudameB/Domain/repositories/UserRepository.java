@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.Mud.MudameB.Domain.Entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String>{
-    public Optional<User>findByUsername(String usernmame);
+public interface UserRepository extends JpaRepository<User, String> {
+    public Optional<User> findByUsername(String username);
 }
