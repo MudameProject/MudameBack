@@ -38,6 +38,7 @@ public class ClientService implements IClientService {
         client.setReservation(new ArrayList<>());
         return this.entityToResp(this.ClientRepository.save(client));
     }
+
     public ClientEntity findById(Long id) {
         return ClientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
     }

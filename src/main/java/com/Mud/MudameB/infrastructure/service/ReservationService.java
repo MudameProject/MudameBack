@@ -135,6 +135,11 @@ public class ReservationService implements IReservationService {
         DriverResp driver = new DriverResp();
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
+        TruckResp truck = new TruckResp();
+        BeanUtils.copyProperties(entity.getDriver(), truck);
+
+
+
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
         return ReservationResp.builder()
                 .id(entity.getId())
@@ -142,6 +147,8 @@ public class ReservationService implements IReservationService {
                 .origin(entity.getOrigin())
                 .destiny(entity.getDestiny())
                 .driver(driver)
+                .client(client)
+                .truck(truck)
                 .build();
     }
     private ReservationEntity requestToEntity(ReservationReq request) {
@@ -151,7 +158,7 @@ public class ReservationService implements IReservationService {
         //TruckEntity truck = truckService.findById(request.getTruckId());
         DriverEntity driver = driverService.findById(request.getDriverdI());
 
-        //TruckEntity truck = TruckService
+        TruckEntity truck = truckService.findById(request.getTruckId());
 
         // Crear una nueva instancia de ReservationEntity utilizando el constructor del patrón builder
         return ReservationEntity.builder()
@@ -159,7 +166,7 @@ public class ReservationService implements IReservationService {
                 .origin(request.getOrigin())
                 .destiny(request.getDestiny())
                 .client(client)
-                //.truck(truck)
+                .truck(truck)
                 .driver(driver)
                 .build();
     }
