@@ -33,8 +33,9 @@ public class TruckService implements ITruckService {
   @Override
   public TruckResp create(TruckReq request) {
 
-    throw new UnsupportedOperationException("Unimplemented method 'create'");
-  }
+    TruckEntity entity = this.requestToEntity(request);
+      return this.entityToResponse(this.truckRepository.save(entity));}
+  
 
   @Override
   public TruckResp get(Long id) {
@@ -45,13 +46,17 @@ public class TruckService implements ITruckService {
   @Override
   public TruckResp update(TruckReq request, Long id) {
 
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+    TruckEntity entity = this.find(id);
+    entity = this.requestToEntity(request);
+    entity.setId(id);
+
+    return this.entityToResponse(this.truckRepository.save(entity));
   }
 
   @Override
   public void delete(Long id) {
 
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    this.truckRepository.delete(this.find(id));
   }
 
   @Override
@@ -86,7 +91,7 @@ public class TruckService implements ITruckService {
     BeanUtils.copyProperties(Entity.getDriver(), driver);
 
     return TruckResp.builder()
-        .id(Long.parseLong(Entity.getId()))
+        .id(Entity.getId())
         .plate(Entity.getPlate())
         .model(Entity.getModel())
         .brand(Entity.getBrand())
@@ -101,6 +106,18 @@ public class TruckService implements ITruckService {
         .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Camion")));
 
 
+  }
+
+  private TruckEntity requestToEntity(TruckReq request) {
+
+    return TruckEntity.builder()
+
+        .plate(request.getPlate())
+        .model(request.getModel())
+        .brand(request.getBrand())
+        .color(request.getColor())
+        .capacity(request.getCapacity())
+        .build();
   }
 
 }

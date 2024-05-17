@@ -8,13 +8,14 @@ import java.util.List;
 import com.Mud.MudameB.Utils.enums.Capacity;
 
 @Data
+@Builder
 @Entity(name = "truck")
 @AllArgsConstructor
 @NoArgsConstructor
 public class TruckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String plate;
     private String model;
     private String brand;
