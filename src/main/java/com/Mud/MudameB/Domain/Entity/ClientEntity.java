@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.util.List;
 
+import com.Mud.MudameB.Utils.enums.Role;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,12 +18,12 @@ public class ClientEntity {
     private Long id;
     private String name;
     private String lastName;
-    private String password;
-    private String email;
     private Integer phoneNumber;
     private String address;
     @Column(length = 10)
     private Integer zipCode;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
