@@ -40,13 +40,13 @@ public class TruckService implements ITruckService {
   @Override
   public TruckResp get(Long id) {
 
-    return this.entityToResponse(this.find(id));
+    return this.entityToResponse(this.findById(id));
   }
 
   @Override
   public TruckResp update(TruckReq request, Long id) {
 
-    TruckEntity entity = this.find(id);
+    TruckEntity entity = this.findById(id);
     entity = this.requestToEntity(request);
     entity.setId(id);
 
@@ -56,7 +56,7 @@ public class TruckService implements ITruckService {
   @Override
   public void delete(Long id) {
 
-    this.truckRepository.delete(this.find(id));
+    this.truckRepository.delete(this.findById(id));
   }
 
   @Override
@@ -99,7 +99,7 @@ public class TruckService implements ITruckService {
         .build();
   }
 
-  private TruckEntity find(Long id) {
+  private TruckEntity findById(Long id) {
     
   return this.truckRepository.findById(id)
         .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Camion")));
