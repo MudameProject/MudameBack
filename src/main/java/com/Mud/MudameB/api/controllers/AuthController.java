@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Mud.MudameB.api.dto.request.DriverRegisterReq;
+
+import com.Mud.MudameB.api.dto.request.ClientRegiserReq;
 import com.Mud.MudameB.api.dto.request.LoginReq;
 import com.Mud.MudameB.api.dto.request.RegisterReq;
 import com.Mud.MudameB.api.dto.response.AuthResp;
@@ -35,11 +36,10 @@ public class AuthController {
             @Validated @RequestBody RegisterReq request) {
         return ResponseEntity.ok(this.authService.register(request));
     }
-    
-    @PostMapping(path = "/register/driver")
-    public ResponseEntity<AuthResp> registerDriver(
-        @Validated @RequestBody DriverRegisterReq request
-    ){
-        return ResponseEntity.ok(this.authService.registerDriver(request));
+
+    @PostMapping(path = "/auth/register/client")
+    public ResponseEntity<AuthResp> registerClient(
+            @Validated @RequestBody ClientRegiserReq request) {
+        return ResponseEntity.ok(this.authService.registerClient(request));
     }
 }
