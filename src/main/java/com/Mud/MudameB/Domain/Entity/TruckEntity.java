@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.util.List;
 
+import com.Mud.MudameB.Utils.enums.Capacity;
+
 @Data
 @Entity(name = "truck")
 @AllArgsConstructor
@@ -12,18 +14,21 @@ import java.util.List;
 public class TruckEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String plate;
     private String model;
     private String brand;
     private String color;
-    private String capacity;
-    private Long idDriver;
+    private Capacity capacity;
+
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
-    private DriverEntity driver;
 
+    
+    private DriverEntity driver;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

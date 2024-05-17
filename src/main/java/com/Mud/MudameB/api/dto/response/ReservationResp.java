@@ -19,4 +19,5 @@ public class ReservationResp {
     private BasicClient user;
     private TruckResp truck;
     private DriverResp driver;
+    private BasicClient client;
 }

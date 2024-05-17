@@ -41,6 +41,9 @@ public class ReservationService implements IReservationService {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private TruckService truckService;
+
 
     @Autowired
     private DriverService driverService;
@@ -147,6 +150,8 @@ public class ReservationService implements IReservationService {
         ClientEntity client = clientService.findById(request.getClientId());
         //TruckEntity truck = truckService.findById(request.getTruckId());
         DriverEntity driver = driverService.findById(request.getDriverdI());
+
+        //TruckEntity truck = truckService.f.
 
         // Crear una nueva instancia de ReservationEntity utilizando el constructor del patrón builder
         return ReservationEntity.builder()

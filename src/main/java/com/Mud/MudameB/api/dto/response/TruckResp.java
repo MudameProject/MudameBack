@@ -1,5 +1,7 @@
 package com.Mud.MudameB.api.dto.response;
 
+import com.Mud.MudameB.Utils.enums.Capacity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +17,6 @@ public class TruckResp {
     private String model;
     private String brand;
     private String color;
-    private String capacity;
-    private Long idDriver;
+    private Capacity capacity;
+
 }
