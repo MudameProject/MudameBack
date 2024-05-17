@@ -2,6 +2,7 @@ package com.Mud.MudameB.Domain.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import io.micrometer.common.lang.NonNull;
 
 @Entity(name = "reservation")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationEntity {
@@ -30,17 +32,17 @@ public class ReservationEntity {
     private PayMethod payMethod;
     /*Relaciones*/
 
-    //Relacion con truck
+    // Relacion con truck
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "truck_id", referencedColumnName = "id")
     private TruckEntity truck;
 
-    //Relacion con user
+    // Relacion con client
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private ClientEntity client;
 
-    //Relacion con driver
+    // Relacion con driver
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
     private DriverEntity driver;

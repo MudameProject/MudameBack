@@ -16,7 +16,8 @@ public class ReservationResp {
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
-    private BasicUser user;
+    private BasicClient user;
     private TruckResp truck;
     private DriverResp driver;
+    private BasicClient client;
 }

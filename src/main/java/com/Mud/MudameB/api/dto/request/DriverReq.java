@@ -14,11 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DriverReq {
+    @NotBlank(message = "se nesecita el nombre")
+    private String name;
+    @NotBlank(message = "se nesecita el apellido")
+    private String lastName;
+    private Integer phoneNumber;
     @NotBlank(message = "el tipo de licencia es requerido")
     private LicenseType licenseType;
     @NotBlank(message = "el numero de licencia es requerido")
     private String license;
     private Auxiliar auxiliar;
     @NotBlank(message = "el numero de identidad del empleado es requerido")
-    private Long userID;
+    private Long clientID;
 }

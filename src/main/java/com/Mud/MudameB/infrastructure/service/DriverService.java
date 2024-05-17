@@ -3,6 +3,7 @@ package com.Mud.MudameB.infrastructure.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,13 +12,12 @@ import org.springframework.stereotype.Service;
 
 import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
-import com.Mud.MudameB.Utils.enums.Auxiliar;
-import com.Mud.MudameB.Utils.enums.LicenseType;
+
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.DriverReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
-import com.Mud.MudameB.api.dto.response.UserResp;
+import com.Mud.MudameB.api.dto.response.ClientResp;
 import com.Mud.MudameB.infrastructure.abstract_services.IDriverService;
 
 import jakarta.transaction.Transactional;
@@ -34,7 +34,12 @@ public class DriverService implements IDriverService {
   @Override
   public DriverResp create(DriverReq request) {
     DriverEntity entity = this.requestToEntity(request);
+    entity.setTrucks(new ArrayList<>());
     return this.entityToResponse(this.driverRepository.save(entity));
+  }
+
+  public DriverEntity findById(Long id) {
+    return driverRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Driver not found"));
   }
 
   @Override
@@ -44,28 +49,33 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp update(DriverReq request, Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+    DriverEntity driver = this.find(id);
+
+    DriverEntity driverUpdate = this.requestToEntity(request);
+    driverUpdate.setId(id);
+
+    return this.entityToResponse(this.driverRepository.save(driverUpdate));
   }
 
   @Override
   public void delete(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    DriverEntity driver = this.find(id);
+    this.driverRepository.delete(driver);
   }
 
   @Override
   public Page<DriverResp> getAll(int page, int size) {
-      if (page < 0) page = 0;
-      
+    if (page < 0)
+      page = 0;
 
-      PageRequest pagination = PageRequest.of(page, size);
+    PageRequest pagination = null;
 
-      return this.driverRepository.findAll(pagination)
-              .map(vacant -> this.entityToResponse(vacant));
-  
+    this.driverRepository.findAll(pagination);
+
+    return this.driverRepository.findAll(pagination)
+        .map(vacant -> this.entityToResponse(vacant));
+
   }
-  
 
   @Override
   public List<DriverResp> search(String name) {
@@ -80,36 +90,29 @@ public class DriverService implements IDriverService {
 
   private DriverResp entityToResponse(DriverEntity entity) {
 
-    UserResp user = new UserResp();
-    BeanUtils.copyProperties(entity.getUser(), user);
+    ClientResp client = new ClientResp();
+    BeanUtils.copyProperties(entity.getClient(), client);
 
     return DriverResp.builder()
         .id(entity.getId())
+        .name(entity.getName())
+        .lastName(entity.getLastName())
+        .phoneNumber(entity.getPhoneNumber())
         .license(entity.getLicense())
         .licenseType(entity.getLicenseType())
         .auxiliar(entity.getAuxiliar())
-        .userID(user)
+        .clientID(client)
         .build();
   }
 
-
-  private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
-
-    entity.setLicense(request.getLicense());
-    entity.setLicenseType(request.getLicenseType());
-    entity.setAuxiliar(request.getAuxiliar());
-    entity.setUserID(request.getUserID());
-
-    return entity;
-
-  }
-
-  private DriverEntity requestToEntity(DriverReq request) {
+  private DriverEntity requestToEntity(DriverReq driver) {
     return DriverEntity.builder()
-      .license(request.getLicense())
-      .licenseType(request.getLicenseType())
-      .auxiliar(request.getAuxiliar())
-      .userID(request.getUserID())
-      .build();
+        .name(driver.getName())
+        .lastName(driver.getLastName())
+        .phoneNumber(driver.getPhoneNumber())
+        .auxiliar(driver.getAuxiliar())
+        .license(driver.getLicense())
+        .licenseType(driver.getLicenseType())
+        .build();
   }
 }
