@@ -17,10 +17,11 @@ public class DriverEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
+    
     private String name;
     private String lastName;
     private Integer phoneNumber;
+    @Enumerated(EnumType.STRING)
     private LicenseType licenseType; // Enum
     @NonNull
     @Size(min = 15, max = 17)
