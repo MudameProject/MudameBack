@@ -151,7 +151,7 @@ public class ReservationService implements IReservationService {
         //TruckEntity truck = truckService.findById(request.getTruckId());
         DriverEntity driver = driverService.findById(request.getDriverdI());
 
-        //TruckEntity truck = truckService.f.
+        //TruckEntity truck = TruckService
 
         // Crear una nueva instancia de ReservationEntity utilizando el constructor del patrón builder
         return ReservationEntity.builder()
