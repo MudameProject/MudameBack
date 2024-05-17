@@ -56,6 +56,7 @@ public class DriverService implements IDriverService {
     throw new UnsupportedOperationException("Unimplemented method 'delete'");
   }
 
+  @SuppressWarnings("null")
   @Override
   public Page<DriverResp> getAll(int page, int size) {
       if (page < 0) page = 0;

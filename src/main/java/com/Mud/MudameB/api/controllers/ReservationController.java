@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-
 @RestController
 @RequestMapping("/reservations")
 @AllArgsConstructor
@@ -50,6 +48,5 @@ public class ReservationController {
         this.iReservationService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

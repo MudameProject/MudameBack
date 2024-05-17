@@ -1,6 +1,5 @@
 package com.Mud.MudameB.infrastructure.service;
 
-import com.Mud.MudameB.Domain.Entity.ClientEntity;
 import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import jakarta.persistence.EntityNotFoundException;
