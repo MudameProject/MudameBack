@@ -1,5 +1,9 @@
 package com.Mud.MudameB.infrastructure.service;
 
+import com.Mud.MudameB.Domain.Entity.ClientEntity;
+import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
+import com.Mud.MudameB.Utils.messages.ErrorMessages;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,8 +15,6 @@ import org.springframework.stereotype.Service;
 import com.Mud.MudameB.Domain.Entity.TruckEntity;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
 import com.Mud.MudameB.Utils.enums.Capacity;
-import com.Mud.MudameB.Utils.exceptions.BadRequestException;
-import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.TruckReq;
 import com.Mud.MudameB.api.dto.response.DriverResp;
 import com.Mud.MudameB.api.dto.response.TruckResp;
@@ -38,25 +40,27 @@ public class TruckService implements ITruckService {
   
 
   @Override
-  public TruckResp get(Long id) {
+  public TruckResp get(Long id) {return this.entityToResponse(this.findById(id));}
 
-    return this.entityToResponse(this.find(id));
+  public TruckEntity findById(Long id) {
+    return truckRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
   }
 
   @Override
   public TruckResp update(TruckReq request, Long id) {
+    TruckEntity truck = this.find(id);
 
-    TruckEntity entity = this.find(id);
-    entity = this.requestToEntity(request);
-    entity.setId(id);
+    TruckEntity truckUpdate = this.requestToEntity(request);
+    truckUpdate.setId(id);
+    truckUpdate.setReservation(truck.getReservation());
 
-    return this.entityToResponse(this.truckRepository.save(entity));
+    return this.entityToResponse(this.truckRepository.save(truckUpdate));
   }
 
   @Override
   public void delete(Long id) {
 
-    this.truckRepository.delete(this.find(id));
+    this.truckRepository.delete(this.findById(id));
   }
 
   @Override
@@ -100,13 +104,6 @@ public class TruckService implements ITruckService {
         .build();
   }
 
-  private TruckEntity find(Long id) {
-    
-  return this.truckRepository.findById(id)
-        .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Camion")));
-
-
-  }
 
   private TruckEntity requestToEntity(TruckReq request) {
 
@@ -118,6 +115,12 @@ public class TruckService implements ITruckService {
         .color(request.getColor())
         .capacity(request.getCapacity())
         .build();
+  }
+
+
+  private TruckEntity find(Long id) {
+    return this.truckRepository.findById(id)
+            .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Client")));
   }
 
 }
