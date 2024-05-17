@@ -42,6 +42,7 @@ public class ClientService implements IClientService {
     public ClientEntity findById(Long id) {
         return ClientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
     }
+    //sahdhasd
 
     @Override
     public ClientResp get(Long id) {
