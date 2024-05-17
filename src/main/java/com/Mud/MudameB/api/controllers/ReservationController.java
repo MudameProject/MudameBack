@@ -16,7 +16,7 @@ public class ReservationController {
 
     private final IReservationService iReservationService;
 
-    @GetMapping
+    @GetMapping(path = "public/get")
     public ResponseEntity<Page<ReservationResp>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {

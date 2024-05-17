@@ -23,6 +23,7 @@ public class ClientReq {
     private String email;
     @Size(min = 10, max = 20, message = "el telefono debe tener entre 10 y 20 caracteres")
     private Integer phoneNumber;
+    @NotBlank(message = "el nombre es requerido")
     private String address;
     @NotNull(message = "el código postal es requerido")
     private Integer zipCode;
