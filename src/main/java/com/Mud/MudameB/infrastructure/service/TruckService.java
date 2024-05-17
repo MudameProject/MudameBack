@@ -1,6 +1,5 @@
 package com.Mud.MudameB.infrastructure.service;
 
-import com.Mud.MudameB.Domain.Entity.ClientEntity;
 import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import jakarta.persistence.EntityNotFoundException;
@@ -69,7 +68,6 @@ public class TruckService implements ITruckService {
     throw new UnsupportedOperationException("Unimplemented method 'getAll'");
   }
 
-  @SuppressWarnings("null")
   @Override
   public Page<TruckResp> getAll(int page, int size, Capacity CrudCapacity) {
 

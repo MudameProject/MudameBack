@@ -18,7 +18,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,10 +43,8 @@ public class ReservationService implements IReservationService {
     @Autowired
     private TruckService truckService;
 
-
     @Autowired
     private DriverService driverService;
-
 
     @Override
     public List<ReservationResp> search(String name) {
@@ -68,17 +65,16 @@ public class ReservationService implements IReservationService {
         TruckEntity truck = this.truckRepository.findById(request.getTruckId())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
 
-
         ReservationEntity reservation = this.requestToEntity(request);
 
         reservation.setClient(client);
         reservation.setDriver(driver);
         reservation.setTruck(truck);
 
-
         return this.entityToResponseReservation(this.reservationRepository.save(reservation));
 
     }
+
     @Override
     public ReservationResp get(Long aLong) {
         return null;
@@ -99,7 +95,7 @@ public class ReservationService implements IReservationService {
         TruckEntity truck = this.truckRepository.findById(request.getTruckId())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
 
-         reservation = this.requestToEntity(request);
+        reservation = this.requestToEntity(request);
 
         reservation.setClient(client);
         reservation.setDriver(driver);
@@ -107,14 +103,12 @@ public class ReservationService implements IReservationService {
 
         return this.entityToResponseReservation(this.reservationRepository.save(reservation));
 
-
     }
 
     @Override
     public void delete(Long aLong) {
         this.reservationRepository.delete(this.find(aLong));
     }
-
 
     @Override
     public Page<ReservationResp> getAll(int page, int size) {
@@ -138,8 +132,6 @@ public class ReservationService implements IReservationService {
         TruckResp truck = new TruckResp();
         BeanUtils.copyProperties(entity.getDriver(), truck);
 
-
-
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
         return ReservationResp.builder()
                 .id(entity.getId())
@@ -151,16 +143,18 @@ public class ReservationService implements IReservationService {
                 .truck(truck)
                 .build();
     }
+
     private ReservationEntity requestToEntity(ReservationReq request) {
 
         // Buscar las entidades relacionadas utilizando sus IDs
         ClientEntity client = clientService.findById(request.getClientId());
-        //TruckEntity truck = truckService.findById(request.getTruckId());
+        // TruckEntity truck = truckService.findById(request.getTruckId());
         DriverEntity driver = driverService.findById(request.getDriverdI());
 
         TruckEntity truck = truckService.findById(request.getTruckId());
 
-        // Crear una nueva instancia de ReservationEntity utilizando el constructor del patrón builder
+        // Crear una nueva instancia de ReservationEntity utilizando el constructor del
+        // patrón builder
         return ReservationEntity.builder()
                 .dateTime(request.getDateTime())
                 .origin(request.getOrigin())
@@ -177,11 +171,3 @@ public class ReservationService implements IReservationService {
     }
 
 }
-
-
-
-
-
-
-
-

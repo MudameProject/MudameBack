@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user")
     private ClientEntity client;
 
+    @OneToOne(mappedBy = "user")
+    private ClientEntity driver;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // guardar la autoridad otorgada al usuario autenticado
