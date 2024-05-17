@@ -53,6 +53,7 @@ public class DriverService implements IDriverService {
 
     DriverEntity driverUpdate = this.requestToEntity(request);
     driverUpdate.setId(id);
+    driverUpdate.setTrucks(driver.getTrucks());
 
     return this.entityToResponse(this.driverRepository.save(driverUpdate));
   }
@@ -68,7 +69,7 @@ public class DriverService implements IDriverService {
     if (page < 0)
       page = 0;
 
-    PageRequest pagination = null;
+    PageRequest pagination = PageRequest.of(page, size);
 
     this.driverRepository.findAll(pagination);
 

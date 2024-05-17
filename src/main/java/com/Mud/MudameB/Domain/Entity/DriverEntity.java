@@ -40,4 +40,8 @@ public class DriverEntity {
     @EqualsAndHashCode.Exclude
     private ClientEntity client;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
+
 }

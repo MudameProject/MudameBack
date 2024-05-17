@@ -6,10 +6,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.User;
+import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.UserRepository;
 import com.Mud.MudameB.Utils.enums.Role;
 import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
+import com.Mud.MudameB.api.dto.request.DriverRegisterReq;
 import com.Mud.MudameB.api.dto.request.LoginReq;
 import com.Mud.MudameB.api.dto.request.RegisterReq;
 import com.Mud.MudameB.api.dto.response.AuthResp;
@@ -24,6 +27,9 @@ public class AuthService implements IAuthService {
 
     @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
+    private final DriverRepository driverRepository;
 
     @Autowired
     private final JwtService jwtService;
@@ -88,4 +94,41 @@ public class AuthService implements IAuthService {
         return this.userRepository.findByUsername(userName)
                 .orElse(null);
     }
+
+    @Override
+    public AuthResp registerDriver(DriverRegisterReq request) {
+        
+        User exist = this.findByUserName(request.getUserName());
+
+        if (exist != null) {
+            throw new BadRequestException("El usuario ya está registrado");
+        }
+
+        User user = User.builder()
+                    .username(request.getUserName())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(Role.DRIVER)
+                    .build();
+
+        User userSave = this.userRepository.save(user);
+
+        DriverEntity driver = DriverEntity.builder()
+                    .name(request.getName())
+                    .lastName(request.getLastName())
+                    .phoneNumber(request.getPhoneNumber())
+                    .auxiliar(request.getAuxiliar())
+                    .license(request.getLicense())
+                    .licenseType(request.getLicenseType())
+                    .build();
+
+        this.driverRepository.save(driver);
+
+        return AuthResp.builder()
+                    .message("condoctor registrado correctamente")
+                    .token(this.jwtService.getToken(userSave))
+                    .build();
+    }
+    
+
+
 }
