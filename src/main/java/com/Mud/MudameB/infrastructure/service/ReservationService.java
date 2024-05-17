@@ -10,21 +10,18 @@ import com.Mud.MudameB.Domain.repositories.ReservationRepository;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
-import com.Mud.MudameB.api.dto.request.ClientReq;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
 import com.Mud.MudameB.infrastructure.abstract_services.IReservationService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.pulsar.PulsarProperties;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -64,7 +61,7 @@ public class ReservationService implements IReservationService {
         // Obtener driver
         DriverEntity driver = this.driverRepository.findById(request.getDriverdI())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("driver")));
-
+        // Obtener driver
         TruckEntity truck = this.truckRepository.findById(request.getTruckId())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
 
@@ -78,10 +75,7 @@ public class ReservationService implements IReservationService {
 
         return this.entityToResponseReservation(this.reservationRepository.save(reservation));
 
-
-
     }
-
     @Override
     public ReservationResp get(Long aLong) {
         return null;
@@ -89,20 +83,46 @@ public class ReservationService implements IReservationService {
 
     @Override
     public ReservationResp update(ReservationReq request, Long aLong) {
-        return null;
+        ReservationEntity reservation = this.find(aLong);
+
+        // Obtener cliente
+        ClientEntity client = this.clientRepository.findById(request.getClientId())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("client")));
+
+        // Obtener driver
+        DriverEntity driver = this.driverRepository.findById(request.getDriverdI())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("driver")));
+        // Obtener driver
+        TruckEntity truck = this.truckRepository.findById(request.getTruckId())
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
+
+         reservation = this.requestToEntity(request);
+
+        reservation.setClient(client);
+        reservation.setDriver(driver);
+        reservation.setTruck(truck);
+
+        return this.entityToResponseReservation(this.reservationRepository.save(reservation));
+
+
     }
 
     @Override
     public void delete(Long aLong) {
-
+        this.reservationRepository.delete(this.find(aLong));
     }
+
 
     @Override
     public Page<ReservationResp> getAll(int page, int size) {
-        return null;
+        if (page < 0)
+            page = 0;
+
+        PageRequest pagination = PageRequest.of(page, size);
+
+        return this.reservationRepository.findAll(pagination)
+                .map(this::entityToResponseReservation);
     }
-
-
 
     public ReservationResp entityToResponseReservation(ReservationEntity entity) {
 
@@ -120,10 +140,7 @@ public class ReservationService implements IReservationService {
                 .destiny(entity.getDestiny())
                 .driver(driver)
                 .build();
-        //asjdjasjdajsd
     }
-
-
     private ReservationEntity requestToEntity(ReservationReq request) {
 
         // Buscar las entidades relacionadas utilizando sus IDs
@@ -142,6 +159,10 @@ public class ReservationService implements IReservationService {
                 .build();
     }
 
+    private ReservationEntity find(Long id) {
+        return this.reservationRepository.findById(id)
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Servicio")));
+    }
 
 }
 
