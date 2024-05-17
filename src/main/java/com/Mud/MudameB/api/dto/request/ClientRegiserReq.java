@@ -5,15 +5,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientReq {
+public class ClientRegiserReq extends RegisterReq {
     @NotBlank(message = "el nombre es requerido")
     private String name;
     @NotBlank(message = "el appelido es requerido")
@@ -21,8 +23,8 @@ public class ClientReq {
     @Email(message = "el email no es valido")
     @Size(min = 5, max = 100, message = "el email debe tener entre 5 y 100 caracteres")
     private String email;
-    @Size(min = 10, max = 20, message = "El error excede")
-    private int phoneNumber;
+    @Size(min = 10, max = 20, message = "el telefono debe tener entre 10 y 20 caracteres")
+    private Integer phoneNumber;
     private String address;
     @NotNull(message = "el código postal es requerido")
     private Integer zipCode;

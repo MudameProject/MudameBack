@@ -42,6 +42,7 @@ public class ClientService implements IClientService {
     public ClientEntity findById(Long id) {
         return ClientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
     }
+    //sahdhasd
 
     @Override
     public ClientResp get(Long id) {
@@ -76,7 +77,6 @@ public class ClientService implements IClientService {
                 .id(entity.getId())
                 .name(entity.getName())
                 .lastName(entity.getLastName())
-                .email(entity.getEmail())
                 .phoneNumber(entity.getPhoneNumber())
                 .address(entity.getAddress())
                 .zipCode(entity.getZipCode())
@@ -106,7 +106,6 @@ public class ClientService implements IClientService {
         return ClientEntity.builder()
                 .name(request.getName())
                 .lastName(request.getLastName())
-                .email(request.getEmail())
                 .phoneNumber(request.getPhoneNumber())
                 .address(request.getAddress())
                 .zipCode(request.getZipCode())
