@@ -16,7 +16,7 @@ public class ClientResp {
     private String name;
     private String lastName;
     private String email;
-    private Integer phoneNumber;
+    private Long phoneNumber;
     private String address;
     private Integer zipCode;
     private List<ReservationToClient> reservations;
