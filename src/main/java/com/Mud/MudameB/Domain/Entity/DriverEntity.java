@@ -10,12 +10,17 @@ import java.util.List;
 
 @Entity(name = "driver")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DriverEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private String name;
+    private String lastName;
+    private Integer phoneNumber;
     @Enumerated(EnumType.STRING)
     private LicenseType licenseType; // Enum
     @NonNull
@@ -35,5 +40,9 @@ public class DriverEntity {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private ClientEntity client;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
 
 }
