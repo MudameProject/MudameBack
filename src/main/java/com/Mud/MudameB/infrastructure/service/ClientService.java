@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,19 +38,14 @@ public class ClientService implements IClientService {
         return this.entityToResp(this.ClientRepository.save(client));
     }
 
-    public ClientEntity findById(Long id) {
-        return ClientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found"));
-    }
-    //sahdhasd
-
     @Override
     public ClientResp get(Long id) {
-        return this.entityToResp(this.find(id));
+        return this.entityToResp(this.findById(id));
     }
 
     @Override
     public ClientResp update(ClientReq request, Long id) {
-        ClientEntity client = this.find(id);
+        ClientEntity client = this.findById(id);
 
         ClientEntity clientUpdate = this.requestToEntity(request);
         clientUpdate.setId(id);
@@ -62,7 +56,7 @@ public class ClientService implements IClientService {
 
     @Override
     public void delete(Long id) {
-        ClientEntity client = this.find(id);
+        ClientEntity client = this.findById(id);
         this.ClientRepository.delete(client);
     }
 
@@ -114,9 +108,9 @@ public class ClientService implements IClientService {
                 .build();
     }
 
-    private ClientEntity find(Long id) {
+    ClientEntity findById(Long id) {
         return this.ClientRepository.findById(id)
-                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Client")));
+                .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Client not found")));
     }
 
     @Override
@@ -127,7 +121,7 @@ public class ClientService implements IClientService {
         PageRequest pagination = PageRequest.of(page, size);
 
         return this.ClientRepository.findAll(pagination)
-                .map(vacant -> this.entityToResp(vacant));
+                .map(client -> this.entityToResp(client));
 
     }
 
