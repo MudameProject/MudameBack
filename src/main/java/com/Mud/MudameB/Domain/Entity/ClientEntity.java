@@ -22,6 +22,8 @@ public class ClientEntity {
     private String address;
     @Column(length = 10)
     private Integer zipCode;
+    @Column(length = 100)
+    private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
 
