@@ -90,7 +90,9 @@ public class TruckService implements ITruckService {
   private TruckResp entityToResponse(TruckEntity Entity) {
 
     DriverResp driver = new DriverResp();
-    BeanUtils.copyProperties(Entity.getDriver(), driver);
+    if (Entity.getDriver() != null) {
+      BeanUtils.copyProperties(Entity.getDriver(), driver);
+  }
 
     return TruckResp.builder()
         .id(Entity.getId())
