@@ -70,12 +70,7 @@ public class DriverService implements IDriverService {
       page = 0;
 
     PageRequest pagination = PageRequest.of(page, size);
-
-    this.driverRepository.findAll(pagination);
-
-    return this.driverRepository.findAll(pagination)
-        .map(vacant -> this.entityToResponse(vacant));
-
+    return this.driverRepository.findAll(pagination).map(this::entityToResponse);
   }
 
   @Override
@@ -86,7 +81,7 @@ public class DriverService implements IDriverService {
 
   private DriverEntity find(Long id) {
     return this.driverRepository.findById(id)
-        .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
+            .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
   }
 
   private DriverResp entityToResponse(DriverEntity entity) {
@@ -95,25 +90,30 @@ public class DriverService implements IDriverService {
     BeanUtils.copyProperties(entity.getClient(), client);
 
     return DriverResp.builder()
-        .id(entity.getId())
-        .name(entity.getName())
-        .lastName(entity.getLastName())
-        .phoneNumber(entity.getPhoneNumber())
-        .license(entity.getLicense())
-        .licenseType(entity.getLicenseType())
-        .auxiliar(entity.getAuxiliar())
-        .clientID(client)
-        .build();
+            .id(entity.getId())
+            .name(entity.getName())
+            .lastName(entity.getLastName())
+            .phoneNumber(entity.getPhoneNumber())
+            .license(entity.getLicense())
+            .licenseType(entity.getLicenseType())
+            .auxiliar(entity.getAuxiliar())
+            .clientID(client)
+            .build();
   }
 
+
   private DriverEntity requestToEntity(DriverReq driver) {
+    if (driver == null) {
+      throw new IllegalArgumentException("El request no puede ser nulo");
+    }
+
     return DriverEntity.builder()
-        .name(driver.getName())
-        .lastName(driver.getLastName())
-        .phoneNumber(driver.getPhoneNumber())
-        .auxiliar(driver.getAuxiliar())
-        .license(driver.getLicense())
-        .licenseType(driver.getLicenseType())
-        .build();
+            .name(driver.getName())
+            .lastName(driver.getLastName())
+            .phoneNumber(driver.getPhoneNumber())
+            .auxiliar(driver.getAuxiliar())
+            .license(driver.getLicense())
+            .licenseType(driver.getLicenseType())
+            .build();
   }
 }

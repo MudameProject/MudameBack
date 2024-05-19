@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5aff010-1279-4c55-9c40-255af4746977" name="Changes" comment="aS">
+    <list default="true" id="f5aff010-1279-4c55-9c40-255af4746977" name="Changes" comment="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/Domain/Entity/ClientEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/Domain/Entity/ClientEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/request/ClientReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/request/ClientReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/response/ClientResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/response/ClientResp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/Domain/Entity/DriverEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/Domain/Entity/DriverEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/request/DriverReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/request/DriverReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/response/DriverResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/dto/response/DriverResp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/infrastructure/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/infrastructure/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/infrastructure/service/DriverService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/infrastructure/service/DriverService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity$ClientEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity$ClientEntityBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity$DriverEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity$DriverEntityBuilder.class" afterDir="false" />
@@ -97,6 +97,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ClientService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/DriverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/DriverService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ReservationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/TruckService$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/TruckService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/TruckService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/Mud/MudameB/MudameBApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/Mud/MudameB/MudameBApplicationTests.class" afterDir="false" />
     </list>
@@ -126,18 +127,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Marulanda921"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Marulanda921&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/MudameProject/MudameBack.git",
-    "accountId": "abd2383e-e73f-4372-a6d1-c00a4ff0eb19"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MudameProject/MudameBack.git&quot;,
+    &quot;accountId&quot;: &quot;abd2383e-e73f-4372-a6d1-c00a4ff0eb19&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -161,19 +162,16 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="MudameBApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="MudameB" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="MudameB" />
-      <option name="filePath" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Mud.MudameB.MudameBApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -195,6 +193,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1715708086468</updated>
+      <workItem from="1716068879951" duration="12858000" />
     </task>
     <task id="LOCAL-00001" summary="ASD">
       <option name="closed" value="true" />
@@ -236,7 +235,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715966782006</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints">
+      <option name="closed" value="true" />
+      <created>1716050831391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716050831391</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints">
+      <option name="closed" value="true" />
+      <created>1716050836397</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716050836397</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +263,7 @@
     <MESSAGE value="Verificando la creacion correcta del jwt, se genera correctamente" />
     <MESSAGE value="arreglando el jwt y verificando que funcionen los endpoints" />
     <MESSAGE value="aS" />
-    <option name="LAST_COMMIT_MESSAGE" value="aS" />
+    <MESSAGE value="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints" />
   </component>
 </project>

@@ -16,7 +16,7 @@ public class DriverResp {
     private Long id;
     private String name;
     private String lastName;
-    private Integer phoneNumber;
+    private Long phoneNumber;
     private LicenseType licenseType;
     private String license;
     private Auxiliar auxiliar;

@@ -167,7 +167,7 @@ public class AuthService implements IAuthService {
         DriverEntity driver = DriverEntity.builder()
                     .name(request.getName())
                     .lastName(request.getLastName())
-                    .phoneNumber(request.getPhoneNumber())
+                    .phoneNumber(Long.valueOf(request.getPhoneNumber()))
                     .auxiliar(request.getAuxiliar())
                     .license(request.getLicense())
                     .licenseType(request.getLicenseType())
