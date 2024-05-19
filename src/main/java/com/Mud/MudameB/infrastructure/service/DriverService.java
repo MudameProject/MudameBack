@@ -98,7 +98,6 @@ public class DriverService implements IDriverService {
             .license(entity.getLicense())
             .licenseType(entity.getLicenseType())
             .auxiliar(entity.getAuxiliar())
-            .clientID(client)
             .build();
   }
 

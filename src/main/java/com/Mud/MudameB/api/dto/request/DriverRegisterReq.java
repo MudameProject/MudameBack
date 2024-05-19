@@ -26,6 +26,4 @@ public class DriverRegisterReq extends RegisterReq{
     @NotBlank(message = "el numero de licencia es requerido")
     private String license;
     private Auxiliar auxiliar;
-    @NotBlank(message = "el numero de identidad del empleado es requerido")
-    private Long clientID;
 }
