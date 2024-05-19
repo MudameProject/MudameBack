@@ -39,7 +39,8 @@ public class DriverService implements IDriverService {
   }
 
   public DriverEntity findById(Long id) {
-    return driverRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Driver not found"));
+    return this.driverRepository.findById(id)
+    .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Driver not found")));
   }
 
   @Override
@@ -81,7 +82,7 @@ public class DriverService implements IDriverService {
 
   private DriverEntity find(Long id) {
     return this.driverRepository.findById(id)
-            .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
+        .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
   }
 
   private DriverResp entityToResponse(DriverEntity entity) {
@@ -91,17 +92,15 @@ public class DriverService implements IDriverService {
     }
 
     return DriverResp.builder()
-            .id(entity.getId())
-            .name(entity.getName())
-            .lastName(entity.getLastName())
-            .phoneNumber(entity.getPhoneNumber())
-            .license(entity.getLicense())
-            .licenseType(entity.getLicenseType())
-            .auxiliar(entity.getAuxiliar())
-            .build();
+        .id(entity.getId())
+        .name(entity.getName())
+        .lastName(entity.getLastName())
+        .phoneNumber(entity.getPhoneNumber())
+        .license(entity.getLicense())
+        .licenseType(entity.getLicenseType())
+        .auxiliar(entity.getAuxiliar())
+        .build();
   }
-
-
 
   private DriverEntity requestToEntity(DriverReq driver) {
     if (driver == null) {
@@ -109,12 +108,12 @@ public class DriverService implements IDriverService {
     }
 
     return DriverEntity.builder()
-            .name(driver.getName())
-            .lastName(driver.getLastName())
-            .phoneNumber(driver.getPhoneNumber())
-            .auxiliar(driver.getAuxiliar())
-            .license(driver.getLicense())
-            .licenseType(driver.getLicenseType())
-            .build();
+        .name(driver.getName())
+        .lastName(driver.getLastName())
+        .phoneNumber(driver.getPhoneNumber())
+        .auxiliar(driver.getAuxiliar())
+        .license(driver.getLicense())
+        .licenseType(driver.getLicenseType())
+        .build();
   }
 }
