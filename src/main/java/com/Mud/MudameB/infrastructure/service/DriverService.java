@@ -85,9 +85,10 @@ public class DriverService implements IDriverService {
   }
 
   private DriverResp entityToResponse(DriverEntity entity) {
-
     ClientResp client = new ClientResp();
-    BeanUtils.copyProperties(entity.getClient(), client);
+    if (entity.getClient() != null) {
+      BeanUtils.copyProperties(entity.getClient(), client);
+    }
 
     return DriverResp.builder()
             .id(entity.getId())
@@ -100,6 +101,7 @@ public class DriverService implements IDriverService {
             .clientID(client)
             .build();
   }
+
 
 
   private DriverEntity requestToEntity(DriverReq driver) {
