@@ -18,7 +18,7 @@ public class ClientEntity {
     private Long id;
     private String name;
     private String lastName;
-    private Long phoneNumber;
+    private Integer phoneNumber;
     private String address;
     @Column(length = 10)
     private Integer zipCode;

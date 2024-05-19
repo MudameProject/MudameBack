@@ -14,5 +14,5 @@ public interface IAuthService {
 
     public AuthResp registerClient(ClientRegiserReq request);
 
-    AuthResp registerDriver(DriverRegisterReq request);
+    public AuthResp registerDriver(DriverRegisterReq request);
 }

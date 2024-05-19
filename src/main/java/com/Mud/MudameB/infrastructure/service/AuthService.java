@@ -2,9 +2,6 @@ package com.Mud.MudameB.infrastructure.service;
 
 import java.util.ArrayList;
 
-import com.Mud.MudameB.Domain.Entity.DriverEntity;
-import com.Mud.MudameB.Domain.repositories.DriverRepository;
-import com.Mud.MudameB.api.dto.request.DriverRegisterReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,12 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Mud.MudameB.Domain.Entity.ClientEntity;
+import com.Mud.MudameB.Domain.Entity.DriverEntity;
 import com.Mud.MudameB.Domain.Entity.User;
 import com.Mud.MudameB.Domain.repositories.ClientRepository;
+import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.UserRepository;
 import com.Mud.MudameB.Utils.enums.Role;
 import com.Mud.MudameB.Utils.enums.exceptions.BadRequestException;
 import com.Mud.MudameB.api.dto.request.ClientRegiserReq;
+import com.Mud.MudameB.api.dto.request.DriverRegisterReq;
 import com.Mud.MudameB.api.dto.request.LoginReq;
 import com.Mud.MudameB.api.dto.request.RegisterReq;
 import com.Mud.MudameB.api.dto.response.AuthResp;
@@ -36,9 +36,6 @@ public class AuthService implements IAuthService {
     private final UserRepository userRepository;
 
     @Autowired
-    private final DriverRepository driverRepository;
-
-    @Autowired
     private final JwtService jwtService;
 
     @Autowired
@@ -49,6 +46,9 @@ public class AuthService implements IAuthService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private DriverRepository driverRepository;
 
     @Override
     public AuthResp login(LoginReq request) {
@@ -127,7 +127,7 @@ public class AuthService implements IAuthService {
         ClientEntity client = ClientEntity.builder()
                 .name(request.getName())
                 .lastName(request.getLastName())
-                .phoneNumber(Long.valueOf(request.getPhoneNumber()))
+                .phoneNumber(request.getPhoneNumber())
                 .address(request.getAddress())
                 .zipCode(request.getZipCode())
                 .user(usersave)
@@ -150,37 +150,42 @@ public class AuthService implements IAuthService {
     @Override
     public AuthResp registerDriver(DriverRegisterReq request) {
         
+        // validamo sque el usuario no exista
         User exist = this.findByUserName(request.getUserName());
 
         if (exist != null) {
-            throw new BadRequestException("El usuario ya está registrado");
+            throw new BadRequestException("el usuario ya esta registrado");
         }
 
-        User user = User.builder()
-                    .username(request.getUserName())
-                    .password(passwordEncoder.encode(request.getPassword()))
-                    .role(Role.DRIVER)
-                    .build();
+        // construimos el usuario
 
-        User userSave = this.userRepository.save(user);
+        User user = User.builder()
+                .username(request.getUserName())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.DRIVER)
+                .build();
+
+        // ahora lo guardamos en la bse de datos
+        User usersave = this.userRepository.save(user);
+
+        // construimos el driver
 
         DriverEntity driver = DriverEntity.builder()
-                    .name(request.getName())
-                    .lastName(request.getLastName())
-                    .phoneNumber(Long.valueOf(request.getPhoneNumber()))
-                    .auxiliar(request.getAuxiliar())
-                    .license(request.getLicense())
-                    .licenseType(request.getLicenseType())
-                    .build();
+                .name(request.getName())
+                .lastName(request.getLastName())
+                .phoneNumber(request.getPhoneNumber())
+                .licenseType(request.getLicenseType())
+                .license(request.getLicense())
+                .auxiliar(request.getAuxiliar())
+
+                .user(usersave)
+                .build();
 
         this.driverRepository.save(driver);
 
         return AuthResp.builder()
-                    .message("condoctor registrado correctamente")
-                    .token(this.jwtService.getToken(userSave))
-                    .build();
+                .message("conductor registrado correctamente")
+                .token(this.jwtService.getToken(usersave))
+                .build();
     }
-    
-
-
 }

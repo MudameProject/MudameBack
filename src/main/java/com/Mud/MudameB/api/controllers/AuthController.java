@@ -1,13 +1,11 @@
 package com.Mud.MudameB.api.controllers;
 
-import com.Mud.MudameB.infrastructure.helpers.JwtTokenHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
-import com.Mud.MudameB.api.dto.request.ClientRegiserReq;
 import com.Mud.MudameB.api.dto.request.LoginReq;
 import com.Mud.MudameB.api.dto.request.RegisterReq;
 import com.Mud.MudameB.api.dto.response.AuthResp;
@@ -29,8 +27,14 @@ public class AuthController {
         return ResponseEntity.ok(this.authService.login(request));
     }
 
-    @PostMapping(path = "/auth/register")
-    public ResponseEntity<AuthResp> register(
+    @PostMapping(path = "/auth/registerClient")
+    public ResponseEntity<AuthResp> registerClient(
+            @Validated @RequestBody RegisterReq request) {
+        return ResponseEntity.ok(this.authService.register(request));
+    }
+
+    @PostMapping(path = "/auth/registerDriver")
+    public ResponseEntity<AuthResp> registerDriver(
             @Validated @RequestBody RegisterReq request) {
         return ResponseEntity.ok(this.authService.register(request));
     }

@@ -20,7 +20,7 @@ public class DriverEntity {
 
     private String name;
     private String lastName;
-    private Long phoneNumber;
+    private Integer phoneNumber;
     @Enumerated(EnumType.STRING)
     private LicenseType licenseType; // Enum
     @NonNull
