@@ -1,5 +1,6 @@
 package com.Mud.MudameB.infrastructure.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -32,7 +33,9 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp create(DriverReq request) {
-    return null; //hasta aqui quede
+    DriverEntity entity = this.requestToEntity(request);
+    entity.setTrucks(new ArrayList<>());
+    return this.entityToResponse(this.driverRepository.save(entity));
   }
 
   public DriverEntity findById(Long id) {
@@ -46,31 +49,29 @@ public class DriverService implements IDriverService {
 
   @Override
   public DriverResp update(DriverReq request, Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+    DriverEntity driver = this.find(id);
+
+    DriverEntity driverUpdate = this.requestToEntity(request);
+    driverUpdate.setId(id);
+    driverUpdate.setTrucks(driver.getTrucks());
+
+    return this.entityToResponse(this.driverRepository.save(driverUpdate));
   }
 
   @Override
   public void delete(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    DriverEntity driver = this.find(id);
+    this.driverRepository.delete(driver);
   }
 
   @Override
   public Page<DriverResp> getAll(int page, int size) {
-      if (page < 0) page = 0;
-      
-      PageRequest pagination = null;
+    if (page < 0)
+      page = 0;
 
-      
-
-      this.driverRepository.findAll(pagination);
-
-      return this.driverRepository.findAll(pagination)
-              .map(vacant -> this.entityToResponse(vacant));
-  
+    PageRequest pagination = PageRequest.of(page, size);
+    return this.driverRepository.findAll(pagination).map(this::entityToResponse);
   }
-  
 
   @Override
   public List<DriverResp> search(String name) {
@@ -80,32 +81,41 @@ public class DriverService implements IDriverService {
 
   private DriverEntity find(Long id) {
     return this.driverRepository.findById(id)
-        .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
+            .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("Conductor")));
   }
 
   private DriverResp entityToResponse(DriverEntity entity) {
-
     ClientResp client = new ClientResp();
-    BeanUtils.copyProperties(entity.getClient(), client);
+    if (entity.getClient() != null) {
+      BeanUtils.copyProperties(entity.getClient(), client);
+    }
 
     return DriverResp.builder()
-        .id(entity.getId())
-        .license(entity.getLicense())
-        .licenseType(entity.getLicenseType())
-        .auxiliar(entity.getAuxiliar())
-        .clientID(client)
-        .build();
+            .id(entity.getId())
+            .name(entity.getName())
+            .lastName(entity.getLastName())
+            .phoneNumber(entity.getPhoneNumber())
+            .license(entity.getLicense())
+            .licenseType(entity.getLicenseType())
+            .auxiliar(entity.getAuxiliar())
+            .clientID(client)
+            .build();
   }
 
 
-//   private DriverEntity requestToVacant(DriverReq request, DriverEntity entity) {
-    
-//     entity.setLicense(request.getLicense());
-//     entity.setLicenseType(LicenseType.B2);
-//     entity.setAuxiliar(Auxiliar.YES);
-//     entity.setUserID(request.getUserID());
 
-//     return entity;
+  private DriverEntity requestToEntity(DriverReq driver) {
+    if (driver == null) {
+      throw new IllegalArgumentException("El request no puede ser nulo");
+    }
 
-// }
+    return DriverEntity.builder()
+            .name(driver.getName())
+            .lastName(driver.getLastName())
+            .phoneNumber(driver.getPhoneNumber())
+            .auxiliar(driver.getAuxiliar())
+            .license(driver.getLicense())
+            .licenseType(driver.getLicenseType())
+            .build();
+  }
 }

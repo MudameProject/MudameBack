@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f5aff010-1279-4c55-9c40-255af4746977" name="Changes" comment="Arreglando todos los tipos de datos de numeros en los endpoints de todas las entidades disponibles">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/infrastructure/helpers/JwtTokenHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/api/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Mud/MudameB/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity$ClientEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity$ClientEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ClientEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity$DriverEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity$DriverEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/DriverEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ReservationEntity$ReservationEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ReservationEntity$ReservationEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ReservationEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/ReservationEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/TruckEntity$TruckEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/TruckEntity$TruckEntityBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/TruckEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/TruckEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/Entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/ClientRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/ClientRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/DriverRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/DriverRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/ReservationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/ReservationRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/TruckRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/TruckRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Domain/repositories/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/MudameBApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/MudameBApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Auxiliar.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Auxiliar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Capacity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Capacity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/LicenseType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/LicenseType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/PayMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/PayMethod.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/exceptions/BadRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/enums/exceptions/BadRequestException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/exceptions/BadRequestException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/exceptions/BadRequestException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/messages/ErrorMessages.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/Utils/messages/ErrorMessages.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/ClientController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/ClientController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/DriverController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/DriverController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/ReservationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/ReservationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/TruckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/controllers/TruckController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse$BaseErrorResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse$BaseErrorResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse$BaseErrorResponseBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse$BaseErrorResponseBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/BaseErrorResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp$ErrorsRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp$ErrorsRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp$ErrorsRespBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp$ErrorsRespBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/errors/ErrorsResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq$ClientRegiserReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq$ClientRegiserReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq$ClientRegiserReqBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq$ClientRegiserReqBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientRegiserReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientReq$ClientReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientReq$ClientReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ClientReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq$DriverRegisterReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq$DriverRegisterReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq$DriverRegisterReqBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq$DriverRegisterReqBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverRegisterReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverReq$DriverReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverReq$DriverReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/DriverReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/LoginReq$LoginReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/LoginReq$LoginReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/LoginReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/LoginReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq$RegisterReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq$RegisterReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq$RegisterReqBuilderImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq$RegisterReqBuilderImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/RegisterReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ReservationReq$ReservationReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ReservationReq$ReservationReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ReservationReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/ReservationReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/TruckReq$TruckReqBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/TruckReq$TruckReqBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/TruckReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/request/TruckReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/AuthResp$AuthRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/AuthResp$AuthRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/AuthResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/AuthResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/BasicClient$BasicClientBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/BasicClient$BasicClientBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/BasicClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/BasicClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ClientResp$ClientRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ClientResp$ClientRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ClientResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ClientResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/DriverResp$DriverRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/DriverResp$DriverRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/DriverResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/DriverResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationResp$ReservationRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationResp$ReservationRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationToClient$ReservationToClientBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationToClient$ReservationToClientBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationToClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/ReservationToClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/TruckResp$TruckRespBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/TruckResp$TruckRespBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/TruckResp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/dto/response/TruckResp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/error_handler/BadRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/api/error_handler/BadRequestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/ApplicationConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/ApplicationConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/CorsConfig$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/CorsConfig$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/CorsConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/config/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/CrudService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/CrudService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IClientService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IDriverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IDriverService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/IReservationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/ITruckService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/abstract_services/ITruckService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/helpers/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/helpers/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/helpers/JwtService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/helpers/JwtService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ClientService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ClientService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/DriverService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/DriverService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ReservationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/ReservationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/TruckService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Mud/MudameB/infrastructure/service/TruckService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/Mud/MudameB/MudameBApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/Mud/MudameB/MudameBApplicationTests.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Feature/Alejandro" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Feature/Alejandro" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Marulanda921&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/MudameProject/MudameBack.git&quot;,
+    &quot;accountId&quot;: &quot;abd2383e-e73f-4372-a6d1-c00a4ff0eb19&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2gT4A4Hbo46GEwcbULo9iK5iKT6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MudameBApplication.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.MudameBApplication.executor": "Run",
+    "git-widget-placeholder": "Feature/Alejandro",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/riwip3-022/Music/M/MudameBack",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="MudameBApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="MudameB" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Mud.MudameB.MudameBApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f5aff010-1279-4c55-9c40-255af4746977" name="Changes" comment="" />
+      <created>1715708086468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715708086468</updated>
+      <workItem from="1716068879951" duration="23285000" />
+    </task>
+    <task id="LOCAL-00001" summary="ASD">
+      <option name="closed" value="true" />
+      <created>1715881450801</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715881450801</updated>
+    </task>
+    <task id="LOCAL-00002" summary="l">
+      <option name="closed" value="true" />
+      <created>1715964781686</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715964781686</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Verificando la creacion correcta del jwt, se genera correctamente">
+      <option name="closed" value="true" />
+      <created>1715965013387</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715965013387</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Verificando la creacion correcta del jwt, se genera correctamente">
+      <option name="closed" value="true" />
+      <created>1715966706218</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715966706218</updated>
+    </task>
+    <task id="LOCAL-00005" summary="arreglando el jwt y verificando que funcionen los endpoints">
+      <option name="closed" value="true" />
+      <created>1715966782006</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715966782006</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints">
+      <option name="closed" value="true" />
+      <created>1716050831391</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716050831391</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints">
+      <option name="closed" value="true" />
+      <created>1716050836397</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716050836397</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Arreglando todos los tipos de datos de numeros en los endpoints de todas las entidades disponibles">
+      <option name="closed" value="true" />
+      <created>1716083182392</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716083182392</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ASD" />
+    <MESSAGE value="l" />
+    <MESSAGE value="Verificando la creacion correcta del jwt, se genera correctamente" />
+    <MESSAGE value="arreglando el jwt y verificando que funcionen los endpoints" />
+    <MESSAGE value="aS" />
+    <MESSAGE value="Arreglando los tipos de datos de todos los los servicios de Cliente y dejandolo totalmente funcional sus endpoints" />
+    <MESSAGE value="Arreglando todos los tipos de datos de numeros en los endpoints de todas las entidades disponibles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglando todos los tipos de datos de numeros en los endpoints de todas las entidades disponibles" />
+  </component>
+</project>
