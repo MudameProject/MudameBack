@@ -162,6 +162,7 @@ public class ReservationService implements IReservationService {
                 .client(client)
                 .truck(truck)
                 .driver(driver)
+                .price(request.getPrice())
                 .build();
     }
 
