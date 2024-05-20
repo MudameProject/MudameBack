@@ -22,9 +22,6 @@ public class TruckEntity {
     private String color;
     private Capacity capacity;
 
-
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id", referencedColumnName = "id")
 

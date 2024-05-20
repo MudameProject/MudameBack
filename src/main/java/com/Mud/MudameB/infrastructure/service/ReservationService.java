@@ -8,6 +8,7 @@ import com.Mud.MudameB.Domain.repositories.ClientRepository;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.ReservationRepository;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
+import com.Mud.MudameB.Utils.enums.Capacity;
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
@@ -65,7 +66,7 @@ public class ReservationService implements IReservationService {
         // Obtener driver
         DriverEntity driver = this.driverRepository.findById(request.getDriverdI())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("driver")));
-        // Obtener driver
+        // Obtener truck
         TruckEntity truck = this.truckRepository.findById(request.getTruckId())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
 
@@ -133,8 +134,12 @@ public class ReservationService implements IReservationService {
         DriverResp driver = new DriverResp();
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
-        TruckResp truck = new TruckResp();
-        BeanUtils.copyProperties(entity.getDriver(), truck);
+        // accedemos directamente a los atributos de truck como una solucion para el problema
+        String plate = entity.getTruck().getPlate();
+        String model = entity.getTruck().getModel();
+        String brand = entity.getTruck().getBrand();
+        String color = entity.getTruck().getColor();
+        Capacity capacity = entity.getTruck().getCapacity();
 
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
         return ReservationResp.builder()
@@ -144,7 +149,11 @@ public class ReservationService implements IReservationService {
                 .destiny(entity.getDestiny())
                 .driver(driver)
                 .client(client)
-                .truck(truck)
+                .plate(plate)
+                .model(model)
+                .brand(brand)
+                .color(color)
+                .capacity(capacity)
                 .build();
     }
 

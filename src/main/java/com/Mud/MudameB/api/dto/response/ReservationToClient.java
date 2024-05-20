@@ -16,6 +16,6 @@ public class ReservationToClient {
     private LocalDateTime dateTime;
     private String origin;
     private String destiny;
-    private TruckResp truck;
     private DriverResp driver;
+    private TruckResp truck;
 }
