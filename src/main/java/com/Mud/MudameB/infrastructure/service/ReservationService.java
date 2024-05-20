@@ -13,6 +13,8 @@ import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
 import com.Mud.MudameB.infrastructure.abstract_services.IReservationService;
+
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Transactional
 @Service
 @AllArgsConstructor
 public class ReservationService implements IReservationService {
@@ -35,6 +38,7 @@ public class ReservationService implements IReservationService {
     @Autowired
     private final DriverRepository driverRepository;
 
+    @Autowired
     private final TruckRepository truckRepository;
 
     @Autowired
