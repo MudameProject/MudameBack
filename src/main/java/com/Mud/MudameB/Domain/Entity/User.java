@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private ClientEntity client;
 
     @OneToOne(mappedBy = "user")
-    private ClientEntity driver;
+    private DriverEntity driver;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

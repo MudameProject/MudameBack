@@ -8,11 +8,14 @@ import com.Mud.MudameB.Domain.repositories.ClientRepository;
 import com.Mud.MudameB.Domain.repositories.DriverRepository;
 import com.Mud.MudameB.Domain.repositories.ReservationRepository;
 import com.Mud.MudameB.Domain.repositories.TruckRepository;
+import com.Mud.MudameB.Utils.enums.Capacity;
 import com.Mud.MudameB.Utils.exceptions.BadRequestException;
 import com.Mud.MudameB.Utils.messages.ErrorMessages;
 import com.Mud.MudameB.api.dto.request.ReservationReq;
 import com.Mud.MudameB.api.dto.response.*;
 import com.Mud.MudameB.infrastructure.abstract_services.IReservationService;
+
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Transactional
 @Service
 @AllArgsConstructor
 public class ReservationService implements IReservationService {
@@ -35,6 +39,7 @@ public class ReservationService implements IReservationService {
     @Autowired
     private final DriverRepository driverRepository;
 
+    @Autowired
     private final TruckRepository truckRepository;
 
     @Autowired
@@ -61,7 +66,7 @@ public class ReservationService implements IReservationService {
         // Obtener driver
         DriverEntity driver = this.driverRepository.findById(request.getDriverdI())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("driver")));
-        // Obtener driver
+        // Obtener truck
         TruckEntity truck = this.truckRepository.findById(request.getTruckId())
                 .orElseThrow(() -> new BadRequestException(ErrorMessages.idNotFound("truck")));
 
@@ -76,8 +81,8 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public ReservationResp get(Long aLong) {
-        return null;
+    public ReservationResp get(Long id) {
+        return this.entityToResponseReservation(this.find(id));
     }
 
     @Override
@@ -129,8 +134,12 @@ public class ReservationService implements IReservationService {
         DriverResp driver = new DriverResp();
         BeanUtils.copyProperties(entity.getDriver(), driver);
 
-        TruckResp truck = new TruckResp();
-        BeanUtils.copyProperties(entity.getDriver(), truck);
+        // accedemos directamente a los atributos de truck como una solucion para el problema
+        String plate = entity.getTruck().getPlate();
+        String model = entity.getTruck().getModel();
+        String brand = entity.getTruck().getBrand();
+        String color = entity.getTruck().getColor();
+        Capacity capacity = entity.getTruck().getCapacity();
 
         // Construir y retornar un nuevo objeto ReservationToClient usando un builder
         return ReservationResp.builder()
@@ -140,7 +149,11 @@ public class ReservationService implements IReservationService {
                 .destiny(entity.getDestiny())
                 .driver(driver)
                 .client(client)
-                .truck(truck)
+                .plate(plate)
+                .model(model)
+                .brand(brand)
+                .color(color)
+                .capacity(capacity)
                 .build();
     }
 
@@ -162,6 +175,7 @@ public class ReservationService implements IReservationService {
                 .client(client)
                 .truck(truck)
                 .driver(driver)
+                .price(request.getPrice())
                 .build();
     }
 

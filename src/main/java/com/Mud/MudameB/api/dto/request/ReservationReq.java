@@ -7,14 +7,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.Mud.MudameB.Utils.enums.PayMethod;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservationReq {
-    @NotBlank(message = "la hora y la fecha es requerida")
+    @NotNull(message = "la hora y la fecha es requerida")
     private LocalDateTime dateTime;
     @NotBlank(message = "el origen del traslado es obligatorio")
     private String Origin;
@@ -26,4 +29,7 @@ public class ReservationReq {
     private Long truckId;
     @NotNull(message = "el id del conductor es obligatorio")
     private Long driverdI;
+    private PayMethod payMethod;
+    private BigDecimal price;
+
 }

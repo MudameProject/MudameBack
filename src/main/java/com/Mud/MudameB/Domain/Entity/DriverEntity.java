@@ -10,20 +10,28 @@ import java.util.List;
 
 @Entity(name = "driver")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DriverEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
+    private String lastName;
+    private Integer phoneNumber;
     @Enumerated(EnumType.STRING)
     private LicenseType licenseType; // Enum
     @NonNull
-    @Size(min = 15, max = 17)
+    @Size(min = 2, max = 10)
     private String license;
     @Enumerated(EnumType.STRING)
     private Auxiliar auxiliar; // Enum
-    private Long clientID;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private ClientEntity client;
 
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = false)
     @ToString.Exclude
@@ -31,9 +39,7 @@ public class DriverEntity {
     private List<TruckEntity> trucks;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private ClientEntity client;
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
 
 }
