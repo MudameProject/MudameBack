@@ -80,8 +80,8 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public ReservationResp get(Long aLong) {
-        return null;
+    public ReservationResp get(Long id) {
+        return this.entityToResponseReservation(this.find(id));
     }
 
     @Override
