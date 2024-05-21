@@ -127,7 +127,7 @@ public class AuthService implements IAuthService {
         ClientEntity client = ClientEntity.builder()
                 .name(request.getName())
                 .lastName(request.getLastName())
-                .phoneNumber(request.getPhoneNumber())
+                .phoneNumber(Long.valueOf(request.getPhoneNumber()))
                 .address(request.getAddress())
                 .zipCode(request.getZipCode())
                 .user(usersave)

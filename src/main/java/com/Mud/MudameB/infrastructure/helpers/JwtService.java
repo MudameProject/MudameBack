@@ -20,7 +20,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtService {
     // crear una variable para guardar mi llave privada(FIRMA)
-    private static final String SECRET_KEY = "bWlFbXBhbmFkaXRhQ29uQWppUGljYW50ZTEyMzQ1Njc4OTEw";
+    private static final String SECRET_KEY = "a9b60758a1a775d3516c534d431d5fe2fdffb859f920f9b54cf1d526cba628dc";
 
     // metodo que se va a encargar de retornar la llave de forma encriptada
     public SecretKey getKey() {

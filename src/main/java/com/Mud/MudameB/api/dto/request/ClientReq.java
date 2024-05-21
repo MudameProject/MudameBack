@@ -21,7 +21,7 @@ public class ClientReq {
     @Min(value = 1000000000, message = "El número de teléfono debe tener exactamente 10 dígitos")
     @Max(value = 9999999999L, message = "El número de teléfono debe tener exactamente 10 dígitos")
     @Digits(integer = 10, fraction = 0, message = "El número de teléfono debe contener exactamente 10 dígitos")
-    private Integer phoneNumber;
+    private Long phoneNumber;
     private String address;
     @NotNull(message = "el código postal es requerido")
     private Integer zipCode;

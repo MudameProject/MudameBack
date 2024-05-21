@@ -72,7 +72,7 @@ public class ClientService implements IClientService {
                 .name(entity.getName())
                 .lastName(entity.getLastName())
                 .email(entity.getEmail())
-                .phoneNumber(entity.getPhoneNumber())
+                .phoneNumber(Long.valueOf(entity.getPhoneNumber()))
                 .address(entity.getAddress())
                 .zipCode(entity.getZipCode())
                 .reservations(reservation)
