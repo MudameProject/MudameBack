@@ -6,7 +6,7 @@ Mudame es una aplicación API RESTful conformada por React (FrontEnd) y SpringBo
 Paso 1: Abrir terminal
 
 Paso 2: Clonar repositorios MudameFront, MudameBack y Api-auth-users
-```
+``` 
 git clone https://github.com/MudameProject/MudameFront.git
 ```
 ```
@@ -65,48 +65,36 @@ Entrar a la extension Spring Boot Dashboard y Presionar "Run"
 #### Configuracion Local
 
 >Requerimientos:
->Tener un administrador de Database como (Mysql, DBeaver,PostgreSQL,etc...)
->Tener Java v17 o posteriores preinstalado 
-
-Abrir servidor en Mysql
-
->Tener Xamp preinstalado si estas en windows
-
-Instalar pack de extensiones de Java en Visual Studio Code
+>Asegúrate de tener Node.js instalado en tu sistema. Puedes descargarlo desde nodejs.org.
+>Instala Nest.js globalmente si aún no lo has hecho: 
 ```
-https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack
+npm install -g @nestjs/cli
 ```
 
-Instalar pack de extensiones de Springboot en Visual Studio Code
-```
-https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack
+Instalar dependencias:
 
 ```
->En caso de que la extension de SpringBoot no se muestre
->Abrir un archivo cualquiera que contenga la extension .java
-
+npm install
 ```
-Entrar a la extension Spring Boot Dashboard y Presionar "Run"
-```
-
-
-
 
 
 ## Características
 
-- **Autenticación de Usuarios**: Gestiona el acceso a través de un sistema robusto de autenticación JWT.
-- **Validación de Datos**: Asegura la integridad de los datos con validaciones completas en todas las entradas.
-- **Gestión de Roles**: Controla el acceso a diferentes partes de la API basándose en roles de usuario (admin, user).
-- **Subida de Archivos**: Permite a los usuarios subir archivos, como imágenes de portadas y documentos PDF.
-- **Optimización de Consultas**: Mejora el rendimiento mediante consultas optimizadas a la base de datos.
+- **Autenticación de Usuarios**: Administra el acceso mediante un sólido sistema de autenticación basado en tokens JWT.
+- **Validación de Datos**: Garantiza la integridad de los datos mediante validaciones exhaustivas en todas las entradas.
+- **Gestión de Roles**:  Controla el acceso a diferentes partes de la API según los roles de usuario (ADMIN, USER, DRIVER).
+- **Seguridad y Autenticación**: Implementa un sistema de autenticación sólido utilizando tokens JWT (JSON Web Tokens) para proteger las rutas y recursos de la API
+- **Manejo de Errores y Excepciones**: Proporciona respuestas claras y códigos de estado HTTP apropiados para diferentes situaciones (por ejemplo, errores de validación, recursos no encontrados, etc.).
 
 ## Tecnologías Utilizadas
+- Spring Boot: Spring Boot es un framework que simplifica la creación de aplicaciones Java basadas en Spring, proporcionando configuraciones predeterminadas y una estructura fácil de seguir.
+
+- React: Es una biblioteca de JavaScript para construir interfaces de usuario interactivas, creando componentes reutilizables y gestionando el estado de la aplicación de manera eficiente.
 
 - Nest.js: Un framework progresivo de Node.js para construir aplicaciones de servidor eficientes y escalables.
-- TypeORM para PostgreSQL: Sistema de gestión de bases de datos relacional para almacenar todos los datos de libros y usuarios.
+
 - JWT: Para la autenticación y gestión de sesiones.
-- Swagger: Para la documentación de la API.
+
 - Gitflow: Estrategia de manejo de ramas que mantiene el desarrollo organizado y eficiente.
 
 ## Dependencias
@@ -117,117 +105,115 @@ Este proyecto utiliza las siguientes librerías y frameworks:
 - Autenticación: `@nestjs/jwt` (versión 10.2.0), `@nestjs/passport` (versión 10.0.3), `passport` (versión 0.7.0), `passport-jwt` (versión 4.0.1)
 - Documentación de la API: `@nestjs/swagger` (versión 7.3.1)
 - ORM y Bases de Datos: `@nestjs/typeorm` (versión 10.0.2), `typeorm` (versión 0.3.20), `pg` (versión 8.11.5)
-- Herramientas de Seguridad: `bcrypt` (versión 5.1.1)
+- Herramientas de Seguridad: `bcrypt` (versión 5.1.1), 
 - Manejo de Metadatos: `reflect-metadata` (versión 0.2.0)
 - Validación de Datos: `class-validator` (versión 0.14.1), `class-transformer` (versión 0.5.1)
 - Programación Reactiva: `rxjs` (versión 7.8.1)
 - AWS SDK: `aws-sdk` (versión 2.1286.0)
+- SpringBoot: `org.springframework.boot:spring-boot-starter`,
+    `org.springframework.boot:spring-boot-starter-web`,
+    `org.springframework.boot:spring-boot-starter-security`,
+    `io.jsonwebtoken:jjwt:`0.9.1,
+    `io.springfox:springfox-swagger2:`2.9.2,
+    `io.springfox:springfox-swagger-ui:`2.9.2,
+    `org.springframework.boot:spring-boot-starter-data-jpa`,
+    `com.mysql.cj.jdbc:mysql-connector-java`,
+    `org.springframework.boot:spring-boot-starter-validation`,
+    `org.springframework.boot:spring-boot-starter-webflux`
 
 
-## Configuración Local
 
-Para ejecutar el proyecto localmente, clona el repositorio y configura las variables de entorno necesarias para la base de datos y JWT.
-
-1. Clona el repositorio:
-   ```shell
-   git clone https://github.com/tu-usuario/book-management-api.git
-   cd book-management-api
-    ```
-2. Instala las dependencias necesarias:
-   ```shell
-   npm install
-    ```
-3. Copia el archivo .env.example a un nuevo archivo .env y configura las variables de entorno necesarias:
-   ```shell
-   cp .env.example .env
-    ```
-   Edita el archivo .env y configura los siguientes valores:
-    ```shell
-   PORT=3000
-    DB_NAME=tu_nombre_de_base_de_datos
-    DB_USER=tu_usuario_de_base_de_datos
-    DB_PASS=tu_contraseña_de_base_de_datos
-    DB_HOST=tu_host_de_base_de_datos
-    DB_PORT=tu_puerto_de_base_de_datos
-
-    JWT_DURATION=12h
-    JWT_SECRET=m54543bxmgx4xSecr37Key
-
-    USER_ROLE=user
-    ADMIN_ROLE=admin
-
-    LIMIT=20
-
-    BUCKET_S3=tu_bucket_de_s3
-    AWS_ACCESS_KEY_ID=tu_id_de_acceso_aws
-    AWS_SECRET_ACCESS_KEY=tu_clave_secreta_aws
-    ```
-   Estos pasos garantizan que tengas toda la configuración necesaria para ejecutar el proyecto localmente, ajustando las variables de entorno según las necesidades de tu entorno de desarrollo.
-
-## Comandos para Desarrollo
-
-Para iniciar el servidor en modo de desarrollo, usa:
-
-```shell
-npm run start:dev
-```
-## Despliegue en Producción
-
-Para iniciar el servidor en modo de desarrollo, usa:
-
-```shell
-npm run build
-npm start
-```
-
-## Estructura de Carpetas del Proyecto
+## Estructura de carpetas del proyecto Spring Boot
 
 La organización del código fuente dentro de la carpeta `src` incluye:
 
-- `/auth`: Contiene los componentes relacionados con la autenticación, como los controladores, servicios, estrategias y guards.
-    - `/decorators`: Funciones personalizadas que añaden funcionalidades adicionales a las rutas o métodos de los controladores.
-    - `/dto`: Data Transfer Objects que definen la estructura de los datos para las operaciones de autenticación.
-    - `/guards`: Clases que implementan la lógica de autorización.
-    - `/interfaces`: Define las interfaces para tipar los objetos dentro del módulo de autenticación.
-    - `/strategies`: Estrategias de Passport para la autenticación JWT.
-    - `auth.controller.ts`: Controlador que maneja las solicitudes HTTP relacionadas con la autenticación.
-    - `auth.module.ts`: Módulo que agrupa todos los elementos relacionados con la autenticación.
-    - `auth.service.ts`: Servicio que contiene la lógica de negocio relacionada con la autenticación.
 
-- `/books`: Módulos para la gestión de libros.
-    - `/dto`: Objetos de Transferencia de Datos para la manipulación de libros.
-    - `/entities`: Entidades que representan la tabla de libros en la base de datos.
-    - `books.controller.ts`: Controlador para las operaciones de libros.
-    - `books.module.ts`: Módulo que encapsula todos los componentes del dominio de libros.
-    - `books.service.ts`: Servicio que contiene la lógica de negocio para libros.
+- `src`:
+    - `main`:
+    - `MudameB`:
+        - `api`:
+        - `controllers`:
+            - `AuthController.java`: Controlador para autenticación.
+            - `ClientController.java`: Controlador para operaciones relacionadas con clientes.
+            - `DriverController.java`: Controlador para operaciones relacionadas con conductores.
+            - `ReservationController`.java: Controlador para operaciones relacionadas con reservas.
+            - `TruckController.java`: Controlador para operaciones relacionadas con camiones.
+        - `dto`:
+        - `errors`:
+            - `BaseErrorResponse.java`: Clase base para respuestas de errores.
+            - `ErrorsResp.java`: Respuesta específica para errores.
+        - `request`:
+            - `ClientRegiserReq.java`: Solicitud de registro de cliente.
+            - `ClientReq.java`: Solicitud de cliente.
+            - `DriverRegisterReq.java`: Solicitud de registro de conductor.
+            - `DriverReq.java`: Solicitud de conductor.
+            - `LoginReq.java`: Solicitud de inicio de sesión.
+        - ` RegisterReq.java`: Solicitud de registro.
+        - ` ReservationReq.java`: Solicitud de reserva.
+            - `TruckReq.java`: Solicitud de camión.
+        - `response`:
+        - ` AuthResp.java`: Respuesta de autenticación.
+        - ` BasicClient.java`: Cliente básico.
+        - ` ClientResp.java`: Respuesta de cliente.
+        - ` DriverResp.java`: Respuesta de conductor.
+            - `ReservationResp.java`: Respuesta de reserva.
+        - ` ReservationToClient.java`: Relación entre reserva y cliente.
+        - ` TruckResp.java`: Respuesta de camión.
+        - `error_handler`:
+        - ` BadRequestController.java`: Controlador para manejar solicitudes incorrectas.
+        - `config`:
+        - `ApplicationConfig.java`: Configuración de la aplicación.
+        - ` CorsConfig.java`: Configuración de CORS (Cross-Origin Resource Sharing).
+        - ` SecurityConfig.java`: Configuración de seguridad.
+        - `Domain`:
+        - `Entity`:
+            - `ClientEntity.java`: Entidad de cliente.
+            - `DriverEntity.java`: Entidad de conductor.
+        - ` ReservationEntity.java`: Entidad de reserva.
+            - `TruckEntity.java`: Entidad de camión.
+        - ` User.java`: Entidad de usuario.
+        - `repositories`:
+        - `infrastructure`:
+        - `service`:
+        - ` AuthService.class`: Servicio de autenticación.
+        - ` ClientService.class`: Servicio de cliente.
+        - ` DriverService.class`: Servicio de conductor.
+        - ` ReservationService.class`: Servicio de reserva.
+        - ` TruckService.class`: Servicio de camión.
+        - ` MudameBApplication.class`: Clase principal de la aplicación.
+        - `Utils`:
+        - `enums`:
+        - ` Auxiliar.class`: Enumeración auxiliar.
+            - `Capacity.class`: Enumeración de capacidad.
+        - `exceptions`:
+        - ` BadRequestException.class`: Excepción para solicitudes incorrectas.
+        - ` LicenseType.class`: Enumeración de tipo de licencia.
+        - ` PayMethod.class`: Enumeración de método de pago.
+        - ` Role.class`: Enumeración de roles.
+        - `exceptions`:
+        - ` BadRequestException.class`: Excepción para solicitudes incorrectas.
+        - `messages`:
+            - `ErrorMessages.class`: Mensajes de error.
 
-- `/common`: Contiene elementos comunes que pueden ser utilizados en toda la aplicación.
-    - `/dto`: Data Transfer Objects comunes para la aplicación.
-    - `common.module.ts`: Módulo que proporciona elementos comunes a otros módulos.
-
-- `/users`: Módulos relacionados con la gestión de usuarios.
-    - `/dto`: Data Transfer Objects para el manejo de la información de los usuarios.
-    - `/entities`: Entidades que representan la tabla de usuarios en la base de datos.
-    - `users.controller.ts`: Controlador para las operaciones relacionadas con los usuarios.
-    - `users.module.ts`: Módulo que agrupa todos los elementos relacionados con los usuarios.
-    - `users.service.ts`: Servicio que contiene la lógica de negocio para usuarios.
-
-- `app.controller.ts`: Controlador principal de la aplicación.
-- `app.module.ts`: Módulo principal que importa y organiza todos los módulos de la aplicación.
-- `main.ts`: Punto de entrada de la aplicación que inicia el servidor NestJS.
+    pom.xml: Archivo de configuración para proyectos Maven. Define las dependencias y plugins necesarios.
+    README.md: Archivo de documentación que proporciona información sobre el proyecto.
 
 Esta estructura de carpetas está diseñada para mantener el proyecto ordenado y modular, haciendo que el código sea más fácil de mantener y escalar.
+
 
 ## Estrategia de Ramificación con Gitflow
 
 Este proyecto implementa la estrategia de ramificación Gitflow, que es un modelo escalable y robusto para manejar el desarrollo de software. Aquí hay una descripción breve de cómo se organizan las ramas y su propósito dentro del flujo de trabajo del proyecto:
 
 - `main`: La rama principal que contiene el código de producción, donde el código alcanza el estado más estable después de ser probado en otras ramas.
-- `dev`: La rama de desarrollo donde todas las características, arreglos y mejoras se fusionan antes de ser desplegadas a producción. Esta rama contiene el estado más reciente del próximo lanzamiento.
-- `feat/x`: Ramas de características donde se desarrollan nuevas funcionalidades. Cada característica tiene su propia rama (por ejemplo, `feat/new-login` para una nueva funcionalidad de inicio de sesión).
-- `fix/x`: Ramas de correcciones donde se arreglan bugs. Al igual que con las características, cada corrección tiene su propia rama (por ejemplo, `fix/login-error`).
+- `development`: La rama de desarrollo donde todas las características, arreglos y mejoras se fusionan antes de ser desplegadas a producción. Esta rama contiene el estado más reciente del próximo lanzamiento.
 
-El trabajo se combina en `dev` para pruebas de integración. Una vez que `dev` es estable y está listo para un lanzamiento, se fusiona en `main`.
+- `Feacture/Alejandro`, `Feacture/David`, `Feacture/Nicolas`,
+ `Feacture/Carlos` ,`Feacture/Daniel`, `Feacture/Angel`: Estas ramas se crean para desarrollar nuevas características, requisitos o historias de usuario. Cada desarrollador trabaja en su propia rama de características y, una vez completada, se fusiona con la rama development.
+    
+
+
+El trabajo se combina en `development` para pruebas de integración. Una vez que `development` es estable y está listo para un lanzamiento, se fusiona en `main`.
 
 Para contribuir al proyecto, crea una rama a partir de `dev` siguiendo el prefijo correspondiente (feat/ o fix/) dependiendo del tipo de trabajo. Después de completar el trabajo y las pruebas, crea un Pull Request hacia `dev`.
 
@@ -235,12 +221,15 @@ La adopción de Gitflow permite una gestión organizada de las versiones, propor
 
 
 ---
-¡Espero que disfrutes utilizando Book Manager tanto como yo disfrute desarrollándolo!
+¡Espero que disfrutes utilizando Mudame tanto como yo disfrute desarrollándolo!
 
 Cordialmente,  
-**Milton Loaiza**
-
-[loaizadeveloper@gmail.com](mailto:loaizadeveloper@gmail.com)
+**Nicolas Luna**
+**Alejandro Marulanda**
+**Carlos Aguiar**
+**David Osorio**
+**Daniel Jimenez**
+**Miguel Angel**
 
 
 ## Licencia
@@ -251,21 +240,5 @@ Este proyecto está licenciado bajo Creative Commons [CC BY 4.0](https://creativ
 
 Puedes usar y redistribuir este trabajo para cualquier propósito, siempre y cuando se otorgue el crédito apropiado.
 
-
-
-
-## Demostración
-
-Puedes interactuar con la API utilizando la siguiente URL:
-
-[Ir a probar la API](http://190.147.64.47:5155/api-doc) -> Para ingresar como admin puedes usar estas credenciales:
-```json
-{
-  "email": "prueba@prueba.pru",
-  "password": "C0ntr4S3gu++r4"
-}
-```
-
-Este despliegue refleja el estado más reciente del código en la rama `main`.
 
 
